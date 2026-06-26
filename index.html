@@ -1,1 +1,586 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ä¸çè»äºæå ± | ã°ã­ã¼ãã«å®å¨ä¿éã¢ãã¿ã¼</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <style>
+    :root {
+      --bg: #0a0c10;
+      --surface: #13161d;
+      --surface2: #1c2030;
+      --border: #2a2f3e;
+      --accent: #e63946;
+      --accent2: #457b9d;
+      --text: #e2e8f0;
+      --text-muted: #8892a4;
+      --tag-ukraine: #3b82f6;
+      --tag-iran: #f59e0b;
+      --tag-pla: #ef4444;
+      --tag-russia: #8b5cf6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      line-height: 1.6;
+    }
 
+    /* ââ ãããã¼ ââ */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 28px; height: 28px;
+      background: var(--accent);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+    }
+    .logo-text {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.05em;
+    }
+    nav { display: flex; gap: 24px; }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color .15s;
+    }
+    nav a:hover, nav a.active { color: var(--text); }
+    .live-badge {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 11px; color: var(--accent); font-weight: 600;
+    }
+    .live-dot {
+      width: 7px; height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; } 50% { opacity: .3; }
+    }
+
+    /* ââ ã¬ã¤ã¢ã¦ã ââ */
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+    .page-header {
+      padding: 28px 0 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+    .page-header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .updated {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 24px;
+      padding-bottom: 48px;
+    }
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+    }
+
+    /* ââ å°å³ ââ */
+    .map-section { }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    #map {
+      width: 100%;
+      height: 440px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #111;
+    }
+    .map-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .legend-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; color: var(--text-muted);
+    }
+    .legend-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+
+    /* ââ ãã¥ã¼ã¹ã«ã¼ã ââ */
+    .articles-section { margin-top: 32px; }
+    .articles-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 700px) {
+      .articles-grid { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+      transition: border-color .15s;
+      cursor: pointer;
+    }
+    .card:hover { border-color: var(--accent2); }
+    .card-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      padding: 2px 8px;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+    .tag-ukraine { background: rgba(59,130,246,.2); color: #60a5fa; }
+    .tag-iran    { background: rgba(245,158,11,.2); color: #fbbf24; }
+    .tag-pla     { background: rgba(239,68,68,.2);  color: #f87171; }
+    .tag-russia  { background: rgba(139,92,246,.2); color: #a78bfa; }
+    .tag-general { background: rgba(100,116,139,.2); color: #94a3b8; }
+    .card-date { font-size: 11px; color: var(--text-muted); }
+    .card h3 {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+    .card p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ââ ãµã¤ããã¼ ââ */
+    .sidebar {}
+    .sidebar-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+    .sidebar-block h2 {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .flash-item {
+      border-top: 1px solid var(--border);
+      padding: 10px 0;
+      font-size: 12px;
+    }
+    .flash-item:first-of-type { border-top: none; padding-top: 0; }
+    .flash-item .flash-tag {
+      font-size: 10px; font-weight: 700;
+      color: var(--accent); margin-bottom: 3px;
+    }
+    .flash-item .flash-time {
+      font-size: 10px; color: var(--text-muted);
+    }
+    .flash-item p {
+      font-size: 12px;
+      line-height: 1.5;
+      margin-top: 2px;
+    }
+    .conflict-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .conflict-item:last-child { border-bottom: none; }
+    .conflict-name { display: flex; align-items: center; gap: 8px; }
+    .conflict-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .intensity {
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+    .high   { background: rgba(239,68,68,.2);  color: #f87171; }
+    .medium { background: rgba(245,158,11,.2); color: #fbbf24; }
+    .low    { background: rgba(34,197,94,.2);  color: #4ade80; }
+
+    /* ââ ããã¿ã¼ ââ */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#">
+    <div class="logo-icon">ð</div>
+    <span class="logo-text">ä¸çè»äºæå ±</span>
+  </a>
+  <nav>
+    <a href="#map-section" class="active">å°å³</a>
+    <a href="#ukraine">ã¦ã¯ã©ã¤ã</a>
+    <a href="#iran">ä¸­æ±</a>
+    <a href="#pla">ä¸­ã­è»æè¡</a>
+  </nav>
+  <div class="live-badge">
+    <div class="live-dot"></div>LIVE
+  </div>
+</header>
+
+<div class="container">
+  <div class="page-header">
+    <h1>ðºï¸ ã°ã­ã¼ãã«å®å¨ä¿éã¢ãã¿ã¼</h1>
+    <div class="updated">æçµæ´æ°: 2026å¹´6æ27æ¥ ï¼ åå½ã®è»äºæ´»åã»ç´äºæå ±ãä¸æ¬æä¾</div>
+  </div>
+
+  <div class="layout">
+    <!-- ã¡ã¤ã³ã³ã³ãã³ã -->
+    <main>
+      <!-- å°å³ -->
+      <div class="map-section" id="map-section">
+        <div class="section-label">ð ç´äºã»è»äºæ´»åããã</div>
+        <div id="map"></div>
+        <div class="map-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#ef4444"></div>é«å¼·åº¦ç´äº</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div>ä¸­å¼·åº¦ç·å¼µ</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div>è»äºæ¼ç¿ã»å±é</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#8b5cf6"></div>æ ¸ã»ããµã¤ã«æ´»å</div>
+        </div>
+      </div>
+
+      <!-- ã¦ã¯ã©ã¤ã -->
+      <div class="articles-section" id="ukraine">
+        <div class="section-label">ðºð¦ ã¦ã¯ã©ã¤ãæ¦äº</div>
+        <div class="articles-grid">
+          <div class="card">
+            <div class="card-top">
+              <span class="tag tag-ukraine">UKRAINE</span>
+              <span class="card-date">2026.06.16</span>
+            </div>
+            <h3>G7ãã¦ã¯ã©ã¤ãæ¦éçµçµã¸çµæå¼·åââãã©ã³ãä»²ä»ã®åæ¦äº¤æ¸ã¯åæ»</h3>
+            <p>G7é¦è³ãã¦ã¯ã©ã¤ãã®æ¦éçµçµã«åããçµæãæ¹ãã¦è¡¨æãä¸æ¹ã§ãã©ã³ãæ¿æ¨©ä¸»å°ã®ç±³ã­ã¦ã¯ã©ã¤ãä¸èäº¤æ¸ã«å®è³ªçé²å±ã¯ãªãã2027å¹´ã¾ã§æ¦äºãç¶ç¶ããå¯è½æ§ãå°éå®¶ãææããã¦ããã</p>
+          </div>
+          <div class="card">
+            <div class="card-top">
+              <span class="tag tag-ukraine">UKRAINE</span>
+              <span class="card-date">2026.05.24</span>
+            </div>
+            <h3>ã­ã·ã¢ããªã¬ã·ã¥ãã¯ããµã¤ã«ãã­ã¼ã¦è¿éã¸çºå°ââå¤å¼¾é ­åMIRVã§å¨åèªç¤º</h3>
+            <p>ã­ã·ã¢è»ã¯ãªã¬ã·ã¥ãã¯ãçºå°ãã­ã¼ã¦åæ¹80kmã®ãã©ã»ãã§ã«ã¯ã´ã¡ã«çå¼¾ãããµã¤ã«ã¯6çºã®ã¯ã©ã¹ã¿ã¼å¼¾é ­ãæ­è¼ããããã6åã®å­çå¼¾ã«åè£ããå¤å¼¾é ­åãNATOè«¸å½ã¯å¼·ãéé£ããã</p>
+          </div>
+          <div class="card">
+            <div class="card-top">
+              <span class="tag tag-ukraine">UKRAINE</span>
+              <span class="card-date">2026.02.24</span>
+            </div>
+            <h3>å½é£ç·ä¼ãã­ã·ã¢ä¾µæ»4å¹´ç®ã«ãæ°¸ç¶çå¹³åãæ±ºè­°æ¡æââç±³å½ã¯æ£æ¨©</h3>
+            <p>å½é£ç·æ¥ç¹å¥ä¼åã§ãã¦ã¯ã©ã¤ãã«ãããæ°¸ç¶çãªå¹³åã¸ã®æ¯æ´ãæ±ºè­°ãæ¡æãç¬¬2æ¬¡ãã©ã³ãæ¿æ¨©ä¸ã§ç±³å½ã¯æ£æ¨©ãæ¬§å·åå½ã¯NATOé¢ããè¦è¶ããç¬èªé²è¡ååãå éããã¦ããã</p>
+          </div>
+          <div class="card">
+            <div class="card-top">
+              <span class="tag tag-russia">RUSSIA</span>
+              <span class="card-date">2026.06.27</span>
+            </div>
+            <h3>æ¬§å·ããç±³å½æãé²è¡ååããå éââååè»äºæ¯åºã®æ¥å¢ãç¶ã</h3>
+            <p>ãã©ã³ãæ¿æ¨©ã®NATOé¢ããåããEUã»è±å½ä¸»å°ã®ç¬èªé²è¡ä½å¶ã®æ§ç¯ãå éããã¤ãã»ãã¼ã©ã³ããä¸­å¿ã¨ããæ±æ¬§é²è¡ã©ã¤ã³ã®å¼·åãé²ãã§ãããé²è¡è²»ã®GDPæ¯3ã4%ã¸ã®å¼ãä¸ããè­°è«ããã¦ããã</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ã¤ã©ã³ã»ä¸­æ± -->
+      <div class="articles-section" id="iran">
+        <div class="section-label">ð ä¸­æ±æå¢</div>
+        <div class="articles-grid">
+          <div class="card">
+            <div class="card-top">
+              <span class="tag tag-iran">IRAN</span>
+              <span class="card-date">2026.06.17</span>
+            </div>
+            <h3>ç±³ã¤ã©ã³ãæ¦éçµçµè¦æ¸ã«ç½²åââãã©ã³ãã»ãã¼ã·ã¥ã­ã¢ã³ä¸¡å¤§çµ±é ãåæ</h3>
+            <p>ãã©ã³ãç±³å¤§çµ±é ã¨ã¤ã©ã³ã®ãã¼ã·ã¥ã­ã¢ã³å¤§çµ±é ãæ¦éçµçµãå®ããè¦æ¸ã«ç½²åã2026å¹´2æã®ç±³ã»ã¤ã¹ã©ã¨ã«å±åæ»æéå§ããç´4ãæã§å¤äº¤çæ±ºçã¸åããããã ããã«ã ãºæµ·å³¡ã®äºå®ä¸ã®å°éç¶æã¯ç¶ç¶ä¸­ã</p>
+          </div>
+          <div class="card">
+            <div class="card-top">
+              <span class="tag tag-iran">IRAN</span>
+              <span class="card-date">2026.02.28</span>
+            </div>
+            <h3>ç±³è»ã»ã¤ã¹ã©ã¨ã«è»ãã¤ã©ã³ã¸è»äºæ»æââãã¡ãã¤å¸«æ­»äº¡ãå¾ç¶ã«æ¬¡ç·</h3>
+            <p>ç±³è»ã¨ã¤ã¹ã©ã¨ã«è»ãã¤ã©ã³ã®æ ¸é¢é£æ½è¨­ã¸ã®æ»æãéå§ãæé«æå°èã¢ãªã»ãã¡ãã¤å¸«ãæ­»äº¡ããæ¬¡ç·ã¢ã¸ã¿ãå¸«ãå¾ç¶ã¨ãã¦é¸åºããããã¤ã©ã³ã¯å ±å¾©æ»æãå®æ½ãä¸­æ±å¨åã®ç·å¼µãæ¥é¨°ããã</p>
+          </div>
+          <div class="card">
+            <div class="card-top">
+              <span class="tag tag-iran">IRAN</span>
+              <span class="card-date">2026.04.07</span>
+            </div>
+            <h3>ãã«ã ãºæµ·å³¡ãé©å½é²è¡éãå°éââä¸ççµæ¸ã«æ·±å»ãªææ</h3>
+            <p>4æ7æ¥ä¸æåæ¦åæåãã¤ã©ã³é©å½é²è¡éããã«ã ãºæµ·å³¡ãäºå®ä¸å°éãä¸çã®ç³æ²¹è¼¸éã®ç´20%ãééãããã®æµ·å³¡ã®å°éã«ãããåæ²¹ä¾¡æ ¼ãæ¥é¨°ãæ¥æ¬ãå«ãè¼¸å¥å½ã§ãããµç­ã®ä¾çµ¦å¶ç´ãé¡å¨åã</p>
+          </div>
+          <div class="card">
+            <div class="card-top">
+              <span class="tag tag-iran">IRAN</span>
+              <span class="card-date">2025å¹´ã</span>
+            </div>
+            <h3>ã¤ã©ã³ãIAEAæ»å¯å¶éãå½åæ³åââæ ¸åµå¨éçºè½åã®æ¥éãªåä¸ãæ¸å¿µ</h3>
+            <p>ã¤ã©ã³ãå½éåå­åæ©é¢ã®æ»å¯ãå¶éããå½åæ³ãå¶å®ããæ ¸éçºã®éææ§ãå¤§å¹ã«ä½ä¸ãæ ¸åµå¨éçºè½åã®æ¥éãªåä¸ãå½éç¤¾ä¼ã®æ¸å¿µãå¼ãã§ãããä»åã®æ»æã§ãã®æ½è¨­ã®å¤ããææãåããã¨ãããã</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLAã»ã­ã·ã¢æè¡ -->
+      <div class="articles-section" id="pla">
+        <div class="section-label">ð¤ ä¸­ã­è»äºæè¡</div>
+        <div class="articles-grid">
+          <div class="card">
+            <div class="card-top">
+              <span class="tag tag-pla">PLA</span>
+              <span class="card-date">2025.11.05</span>
+            </div>
+            <h3>ä¸­å½æµ·è»ãé»ç£å¼¾å°åç©ºæ¯ãç¦å»ºããæ­£å¼å°±å½¹ââè¦è¼æ©å¤æ©ç¨®ã®çºçè¦è¨ç·´å®äº</h3>
+            <p>ä¸­å½åã®é»ç£ã«ã¿ãã«ãï¼EMALSï¼æ­è¼ç©ºæ¯ã»ç¦å»ºè°ãæ­£å¼å°±å½¹ãæ®²-35ãæ®²-15T/DTãç©ºè­¦-600ãªã©è¤æ°æ©ç¨®ã®å¼¾å°èµ·é£ã»çè¦è¨ç·´ãå®äºããç±³ç©ºæ¯ææç¾¤ã«å¯¾æãå¾ãä¸èªæ¯ä½å¶ã®ç¢ºç«ãç¾å®å³ãå¸¯ã³ãã</p>
+          </div>
+          <div class="card">
+            <div class="card-top">
+              <span class="tag tag-pla">PLA</span>
+              <span class="card-date">2025.11.14</span>
+            </div>
+            <h3>076åå¼·è¥²æé¸è¦ãåå·ããæµ·ä¸è©¦é¨éå§ââé»ç£å¼¾å°ã§åºå®ç¿¼æ©ã»ãã­ã¼ã³éç¨å¯è½</h3>
+            <p>æºè¼ææ°´é4ä¸ãã³è¶ã®076åå¼·è¥²æé¸è¦ã»åå·è°ãåã®æµ·ä¸è©¦é¨ã¸ãé»ç£å¼¾å°ãæ­è¼ãåºå®ç¿¼æ¦éæ©ã»ããªã³ãã¿ã¼ã»ç¡äººæ©ã«å¯¾å¿å¯è½ãå°æ¹¾æäºãå¿µé ­ã«ç½®ããä¸é¸ä½æ¦è½åã®é£èºçåä¸ãç¤ºãã</p>
+          </div>
+          <div class="card">
+            <div class="card-top">
+              <span class="tag tag-pla">PLA</span>
+              <span class="card-date">2026.03.04</span>
+            </div>
+            <h3>PLAãè»äºãã¥ã¼ããã¤ãã­ãããã»å®å®æ¦ã­ãããã»ãã­ã¼ã³è»å£ãéçºä¸­</h3>
+            <p>äººæ°è§£æ¾è»ãè»äºç¨ãã¥ã¼ããã¤ãã­ããããå®å®æ¦éã­ããããé£è¡ãã­ã¼ã³è»å£ããã­ãã¬ã³ãAIã®éçºãé²ãã¦ãããã¨ãæããã«ããåäºäºãè¦ç»ï¼2026ã2030å¹´ï¼ã§ã¹ãã¼ãåè£åã®å®æ¦åãå éã</p>
+          </div>
+          <div class="card">
+            <div class="card-top">
+              <span class="tag tag-russia">RUSSIA</span>
+              <span class="card-date">2026.06.27</span>
+            </div>
+            <h3>ã­ã·ã¢ããã¬ã¹ãã¼ããã¬ã¼ã¶ã¼åµå¨ââé«åº¦1,500kmã®è¡æãç¡å¹åããå¯¾è¡æåµå¨</h3>
+            <p>æ¦ç¥ããµã¤ã«è»ã«éåããã¦ããã­ã·ã¢ã®é«åºåã¬ã¼ã¶ã¼ããã¬ã¹ãã¼ããã¯ãå°ä¸ããé«åº¦1,500kmã¾ã§ã®è¡æããç®ããã¾ããããè½åãæã¤ã¨ããããç±³å½ã®GPSã»åµå¯è¡æãç¡ååããå¯¾å®å®åµå¨ã¨ãã¦æ©è½ããã</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ãµã¤ããã¼ -->
+    <aside class="sidebar">
+      <!-- éå ±ãã£ã¼ã -->
+      <div class="sidebar-block">
+        <h2>â¡ éå ±ãã£ã¼ã</h2>
+        <div class="flash-item">
+          <div class="flash-tag">IRAN</div>
+          <p>ç±³ã¤ã©ã³æ¦éçµçµè¦æ¸ã«ç½²åããã«ã ãºå°éã®è§£é¤äº¤æ¸ãéå§ã</p>
+          <div class="flash-time">6æ17æ¥</div>
+        </div>
+        <div class="flash-item">
+          <div class="flash-tag">UKRAINE</div>
+          <p>G7ãã¦ã¯ã©ã¤ãæ¯æ´ã®ç¶ç¶ãç¢ºèªãæ¬§å·ç¬èªé²è¡ååãå éã</p>
+          <div class="flash-time">6æ16æ¥</div>
+        </div>
+        <div class="flash-item">
+          <div class="flash-tag">PLA</div>
+          <p>äººæ°è§£æ¾è»ãAIæ­è¼ã®è»äºã­ãããéçºãå¬å¼ã«èªããã</p>
+          <div class="flash-time">3æ4æ¥</div>
+        </div>
+        <div class="flash-item">
+          <div class="flash-tag">RUSSIA</div>
+          <p>ã­ã·ã¢ããªã¬ã·ã¥ãã¯å¤å¼¾é ­ããµã¤ã«ãã¦ã¯ã©ã¤ãã¸çºå°ã</p>
+          <div class="flash-time">5æ24æ¥</div>
+        </div>
+        <div class="flash-item">
+          <div class="flash-tag">PLA</div>
+          <p>076åå¼·è¥²æé¸è¦ãåå·ããæµ·ä¸è©¦é¨ãåºå®ç¿¼æ©ã®é»ç£å¼¾å°ãç¢ºèªã</p>
+          <div class="flash-time">11æ14æ¥</div>
+        </div>
+      </div>
+
+      <!-- ç´äºå¼·åº¦ä¸è¦§ -->
+      <div class="sidebar-block">
+        <h2>ð¥ ç´äºå¼·åº¦ã¢ãã¿ã¼</h2>
+        <div class="conflict-item">
+          <div class="conflict-name">
+            <div class="conflict-dot" style="background:#ef4444"></div>
+            ã¦ã¯ã©ã¤ãæ¦äº
+          </div>
+          <span class="intensity high">é«</span>
+        </div>
+        <div class="conflict-item">
+          <div class="conflict-name">
+            <div class="conflict-dot" style="background:#f59e0b"></div>
+            ã¤ã©ã³ã»ä¸­æ±
+          </div>
+          <span class="intensity medium">ä¸­ï¼åæ¦ä¸­ï¼</span>
+        </div>
+        <div class="conflict-item">
+          <div class="conflict-name">
+            <div class="conflict-dot" style="background:#f59e0b"></div>
+            å°æ¹¾æµ·å³¡
+          </div>
+          <span class="intensity medium">ä¸­</span>
+        </div>
+        <div class="conflict-item">
+          <div class="conflict-name">
+            <div class="conflict-dot" style="background:#3b82f6"></div>
+            åã·ãæµ·
+          </div>
+          <span class="intensity medium">ä¸­</span>
+        </div>
+        <div class="conflict-item">
+          <div class="conflict-name">
+            <div class="conflict-dot" style="background:#22c55e"></div>
+            æé®®åå³¶
+          </div>
+          <span class="intensity low">ä½</span>
+        </div>
+        <div class="conflict-item">
+          <div class="conflict-name">
+            <div class="conflict-dot" style="background:#22c55e"></div>
+            ã¤ã³ãã»ãã­ã¹ã¿ã³
+          </div>
+          <span class="intensity low">ä½</span>
+        </div>
+      </div>
+
+      <!-- é¢é£ãªã³ã¯ -->
+      <div class="sidebar-block">
+        <h2>ð ä¸æ¬¡æå ±æº</h2>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;">
+          <a href="https://www.mod.go.jp" target="_blank" style="color:var(--accent2);text-decoration:none;">ð é²è¡çã»èªè¡é</a>
+          <a href="https://www.jiia.or.jp" target="_blank" style="color:var(--accent2);text-decoration:none;">ð æ¥æ¬å½éåé¡ç ç©¶æ</a>
+          <a href="https://www.spf.org" target="_blank" style="color:var(--accent2);text-decoration:none;">ð ç¬¹å·å¹³åè²¡å£</a>
+          <a href="https://www.iaea.org" target="_blank" style="color:var(--accent2);text-decoration:none;">ð IAEAï¼å½éåå­åæ©é¢ï¼</a>
+          <a href="https://www.nato.int" target="_blank" style="color:var(--accent2);text-decoration:none;">ð NATOå¬å¼ãµã¤ã</a>
+          <a href="https://www.understandingwar.org" target="_blank" style="color:var(--accent2);text-decoration:none;">ð ISWï¼æ¦äºç ç©¶æï¼</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <p>Â© 2026 ä¸çè»äºæå ± | æå ±ã¯ãã¹ã¦å¬éæå ±ãåºã«ãã¦ãã¾ããè»äºæ´»åã®å©é·ã»æ¯æ´ãç®çã¨ãããã®ã§ã¯ããã¾ããã</p>
+  <p style="margin-top:6px;"><a href="#">ãåãåãã</a> ï¼ <a href="#">åè²¬äºé </a></p>
+</footer>
+
+<script>
+  // ââ Leafletãããã®åæå ââ
+  const map = L.map('map', {
+    center: [30, 30],
+    zoom: 2,
+    zoomControl: true,
+    attributionControl: true
+  });
+
+  // ãã¼ã¯ãã¼ãã®ã¿ã¤ã«ï¼CartoDB Dark Matterï¼
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+  }).addTo(map);
+
+  // ãã¼ã«ã¼ãä½ãã¦ã¼ãã£ãªãã£
+  function makeIcon(color) {
+    return L.divIcon({
+      className: '',
+      html: `<div style="
+        width:14px;height:14px;
+        background:${color};
+        border:2px solid rgba(255,255,255,.7);
+        border-radius:50%;
+        box-shadow:0 0 8px ${color};
+      "></div>`,
+      iconSize: [14, 14],
+      iconAnchor: [7, 7]
+    });
+  }
+
+  // ç´äºã»è»äºæ´»åãã¼ã¿
+  const markers = [
+    // é«å¼·åº¦ç´äºï¼èµ¤ï¼
+    { lat: 49.0, lng: 32.0, color: '#ef4444', label: 'ðºð¦ <b>ã¦ã¯ã©ã¤ãæ¦äº</b>', desc: 'ã­ã·ã¢ã«ããå¨é¢ä¾µæ»ç¶ç¶ä¸­ãåæ¦äº¤æ¸ã¯é£èªããªã¬ã·ã¥ãã¯ããµã¤ã«ä½¿ç¨ãç¢ºèªã' },
+    { lat: 35.7, lng: 51.4, color: '#ef4444', label: 'ð®ð· <b>ã¤ã©ã³ã»ç±³å½è¡çª</b>', desc: '2026å¹´2ã4æãç±³ã»ã¤ã¹ã©ã¨ã«å±åæ»æâãã¡ãã¤å¸«æ­»äº¡âåæ¦è¦æ¸ç½²åã' },
+    { lat: 29.5, lng: 34.8, color: '#ef4444', label: 'ð®ð± <b>ä¸­æ±ã»ã¬ã¶å¨è¾º</b>', desc: 'ã¤ã¹ã©ã¨ã«ã«ããè»äºä½æ¦ç¶ç¶ãç±³ã®ä»²ä»ã§æ­ç¶çãªåæ¦äº¤æ¸ã' },
+
+    // ä¸­å¼·åº¦ç·å¼µï¼ãªã¬ã³ã¸ï¼
+    { lat: 24.0, lng: 121.5, color: '#f59e0b', label: 'ð¹ð¼ <b>å°æ¹¾æµ·å³¡</b>', desc: 'PLAæ¼ç¿ãé »çºãç¦å»ºç©ºæ¯éç¨éå§ã§å°æ¹¾å°éã·ãã¥ã¬ã¼ã·ã§ã³ãç¾å®å³ãå¢ãã' },
+    { lat: 12.0, lng: 114.0, color: '#f59e0b', label: 'ð <b>åã·ãæµ·</b>', desc: 'ãã£ãªãã³ã»ä¸­å½éã®è»äºçæ©æ¦ç¶ç¶ãPLAãåæ²è«¸å³¶ã§ã®æ½è¨­æ¡å¼µãå éã' },
+    { lat: 26.5, lng: 57.0, color: '#f59e0b', label: 'ð¢ <b>ãã«ã ãºæµ·å³¡</b>', desc: 'ã¤ã©ã³é©å½é²è¡éã«ããå°éã®å½±é¿ãç¶ç¶ãç³æ²¹è¼¸éã«æ·±å»ãªå½±é¿ã' },
+
+    // è»äºæ¼ç¿ã»å±éï¼éï¼
+    { lat: 22.3, lng: 114.2, color: '#3b82f6', label: 'â <b>ä¸­å½æµ·è»ã»æ±ã·ãæµ·</b>', desc: 'ç©ºæ¯ææç¾¤ãæ±ã·ãæµ·ã»è¥¿å¤ªå¹³æ´ã§ã®æ¼ç¿ãå¼·åã076åä¸é¸è¦ãåå ã' },
+    { lat: 55.0, lng: 37.6, color: '#3b82f6', label: 'ð·ðº <b>ã­ã·ã¢ã»æ¬§å·æ¹é¢</b>', desc: 'NATOã¨ã®å¯¾å³ããã¬ã¹ãã¼ãã¬ã¼ã¶ã¼åµå¨ãæ¦ç¥ããµã¤ã«è»ã«æ­£å¼éåã' },
+    { lat: 38.3, lng: 127.5, color: '#3b82f6', label: 'ð°ðµ <b>åæé®®</b>', desc: 'å¼¾éããµã¤ã«çºå°å®é¨ãæ­ç¶çã«ç¶ç¶ãå¯¾ã­ã·ã¢è»äºååãé²å±ã' },
+
+    // æ ¸ã»ããµã¤ã«ï¼ç´«ï¼
+    { lat: 56.0, lng: 46.0, color: '#8b5cf6', label: 'â¢ï¸ <b>ã­ã·ã¢æ ¸æ¦å</b>', desc: 'ãªã¬ã·ã¥ãã¯ï¼å¤å¼¾é ­è¶é³éããµã¤ã«ï¼ãå®æ¦ä½¿ç¨ããµã«ããå¤§é¸éå¼¾éå¼¾ã®éåç¶ç¶ã' },
+    { lat: 35.0, lng: 58.0, color: '#8b5cf6', label: 'âï¸ <b>ã¤ã©ã³æ ¸æ½è¨­è·¡</b>', desc: 'ç±³ã»ã¤ã¹ã©ã¨ã«æ»æã§ä¸»è¦æ ¸æ½è¨­ãææãåããæ¨¡æ§ãIAEAãæ»å¯åéãè¦è«ã' },
+    { lat: 40.0, lng: 127.0, color: '#8b5cf6', label: 'ð£ <b>åæé®®æ ¸éçº</b>', desc: 'æ ¸å¼¾é ­ã®å°ååã»ICBMæ­è¼æè¡ã®å®æãè¿ãã¨ã®åæã' },
+  ];
+
+  markers.forEach(m => {
+    L.marker([m.lat, m.lng], { icon: makeIcon(m.color) })
+      .addTo(map)
+      .bindPopup(`
+        <div style="font-family:sans-serif;min-width:200px">
+          <div style="font-size:13px;font-weight:700;margin-bottom:6px">${m.label}</div>
+          <div style="font-size:11px;color:#555;line-height:1.5">${m.desc}</div>
+        </div>
+      `);
+  });
+</script>
+</body>
+</html>
