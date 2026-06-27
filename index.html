@@ -304,6 +304,65 @@
     .medium { background: rgba(245,158,11,.2); color: #fbbf24; }
     .low    { background: rgba(34,197,94,.2);  color: #4ade80; }
 
+    /* ── モーダル ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.8);
+      z-index: 9000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      max-width: 700px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 36px 32px 32px;
+      position: relative;
+      animation: modalIn .18s ease;
+    }
+    @keyframes modalIn {
+      from { opacity:0; transform: translateY(16px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+    .modal-close {
+      position: absolute;
+      top: 14px; right: 16px;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 22px;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: background .12s, color .12s;
+    }
+    .modal-close:hover { background: var(--border); color: var(--text); }
+    .modal-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+    .modal-date { font-size: 12px; color: var(--text-muted); }
+    .modal-title {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    .modal-body {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.9;
+    }
+    .modal-body p { margin-bottom: 14px; }
+    .modal-body p:last-child { margin-bottom: 0; }
+
     /* ── フッター ── */
     footer {
       background: var(--surface);
@@ -365,7 +424,7 @@
       <div class="articles-section" id="ukraine">
         <div class="section-label">🇺🇦 ウクライナ戦争</div>
         <div class="articles-grid">
-          <div class="card">
+          <div class="card" data-body="G7首脳会議（2026年6月）において、各国首脳はウクライナへの支援継続と、公正で永続的な平和の実現に向けた連帯を改めて確認した。&#10;&#10;一方で、トランプ米政権が主導する米・ロシア・ウクライナの三者直接交渉は、停戦条件の隔たりが大きく、実質的な進展は見られていない。ロシア側は占領地の現状維持を前提とした停戦を主張しており、ウクライナ・欧州側はこれを拒否している。&#10;&#10;欧州各国は「米国抜き」でも安全保障を維持できる体制の構築を急いでおり、ドイツ、フランス、ポーランドを中心に防衛費のGDP比3〜4%への引き上げと、EU独自の防衛産業強化が加速している。専門家の間では、停戦が成立するとしても早くとも2027年以降との見方が多い。">
             <div class="card-top">
               <span class="tag tag-ukraine">UKRAINE</span>
               <span class="card-date">2026.06.16</span>
@@ -373,7 +432,7 @@
             <h3>G7、ウクライナ戦闘終結へ結束強化——トランプ仲介の停戦交渉は停滞</h3>
             <p>G7首脳がウクライナの戦闘終結に向けた結束を改めて表明。一方でトランプ政権主導の米ロウクライナ三者交渉に実質的進展はなく、2027年まで戦争が継続する可能性が専門家から指摘されている。</p>
           </div>
-          <div class="card">
+          <div class="card" data-body="2026年5月24日、ロシア軍は中距離弾道ミサイル「オレシュニク（Oreshnik）」をウクライナに向けて発射した。ミサイルはキーウ南方約80kmに位置するビラ・ツェルクヴァに着弾し、民間インフラを直撃した。&#10;&#10;オレシュニクは6発の弾頭を搭載し、それぞれが6個の子弾に分裂する多弾頭独立誘導方式（MIRV）を採用している。飛翔速度はマッハ10を超えるとされ、現行の防空システムでの迎撃は極めて困難とされている。&#10;&#10;NATO諸国はこの発射を強く非難する声明を発表し、ウクライナへの防空システム追加供与を協議。ロシアのプーチン大統領は「西側がウクライナへの長距離攻撃を許可した報復」と位置付け、今後も使用する可能性を示唆した。軍事専門家はオレシュニクを「通常弾頭搭載の戦略的威嚇兵器」と評価しており、核使用の閾値を下げる効果があるとも懸念されている。">
             <div class="card-top">
               <span class="tag tag-ukraine">UKRAINE</span>
               <span class="card-date">2026.05.24</span>
@@ -381,7 +440,7 @@
             <h3>ロシア、オレシュニクミサイルをキーウ近郊へ発射——多弾頭型MIRVで威力誇示</h3>
             <p>ロシア軍はオレシュニクを発射、キーウ南方80kmのビラ・ツェルクヴァに着弾。ミサイルは6発のクラスター弾頭を搭載しそれぞれ6個の子爆弾に分裂する多弾頭型。NATO諸国は強く非難した。</p>
           </div>
-          <div class="card">
+          <div class="card" data-body="2026年2月24日——ロシアによるウクライナへの全面侵攻から4年目の節目に、国連総会の緊急特別会合が開催された。「ウクライナにおける永続的かつ公正な平和への支援」と題する決議は141か国の賛成で採択されたが、米国はトランプ政権の方針に従い棄権した。ロシア、ベラルーシ、北朝鮮などが反対票を投じた。&#10;&#10;第2次トランプ政権の発足以降、米国はウクライナへの軍事支援を段階的に縮小しており、欧州同盟国との間で安全保障をめぐる亀裂が生じている。この状況を受け、フランス・ドイツ・英国を中心に「欧州防衛協力」の枠組み強化が急速に進んでいる。&#10;&#10;特にポーランド・バルト三国・北欧諸国は防衛費の大幅増額を決定。欧州の安全保障がNATOからEU主導の枠組みへとシフトする「ポストNATO」時代が現実味を帯びており、大西洋を挟んだ欧米関係の再定義が迫られている。">
             <div class="card-top">
               <span class="tag tag-ukraine">UKRAINE</span>
               <span class="card-date">2026.02.24</span>
@@ -389,7 +448,7 @@
             <h3>国連総会、ロシア侵攻4年目に「永続的平和」決議採択——米国は棄権</h3>
             <p>国連緊急特別会合で「ウクライナにおける永続的な平和への支援」決議を採択。第2次トランプ政権下で米国は棄権。欧州各国はNATO離れを見越した独自防衛協力を加速させている。</p>
           </div>
-          <div class="card">
+          <div class="card" data-body="トランプ第2次政権のNATO軽視姿勢を受け、欧州は「米国なしで自らを守る」体制の構築を急ピッチで進めている。2026年6月現在、NATO加盟欧州国のうち20か国以上がGDP比2%の防衛費目標を達成しており、ポーランド（4%超）・バルト三国・フィンランドなどは3〜4%台への引き上げを宣言している。&#10;&#10;防衛産業面ではEUが「欧州防衛産業強化プログラム（EDIP）」を始動し、弾薬・ミサイル・防空システムの域内生産能力を大幅に引き上げる方針を決定。ドイツのラインメタル社、フランスのタレス社、イタリアのレオナルド社が急速に生産ラインを拡大している。&#10;&#10;英仏両国は核抑止力の欧州向け拡大を非公式に協議中とも報じられており、「欧州核シールド」構想が現実の政策議論に入りつつある。一方でハンガリーはロシアとの外交チャンネルを維持しており、EU内の足並みに乱れも生じている。">
             <div class="card-top">
               <span class="tag tag-russia">RUSSIA</span>
               <span class="card-date">2026.06.27</span>
@@ -404,7 +463,7 @@
       <div class="articles-section" id="iran">
         <div class="section-label">🕌 中東情勢</div>
         <div class="articles-grid">
-          <div class="card">
+          <div class="card" data-body="2026年6月17日、ドーハにおいてトランプ米大統領とイランのペゼシュキアン大統領が直接会談を行い、「戦闘終結に関する覚書（MOU）」に署名した。2026年2月の米・イスラエル共同攻撃開始から約4か月での外交的決着となる。&#10;&#10;覚書の主な内容は、①双方の敵対行為の即時停止、②イラン核施設へのIAEA査察再開、③段階的な制裁緩和の協議開始、④ホルムズ海峡の商業航行正常化交渉の開始——の4点とされている。&#10;&#10;ただし、イラン革命防衛隊（IRGC）によるホルムズ海峡の事実上の封鎖は即時解除されておらず、タンカーの通行が依然として制限されている。イスラエルは覚書の内容に不満を示しており、米イスラエル間の関係悪化を懸念する声も上がっている。中東の真の安定には、ホルムズ海峡の完全解放とイランの核開発の透明化という2つの課題解決が不可欠とされる。">
             <div class="card-top">
               <span class="tag tag-iran">IRAN</span>
               <span class="card-date">2026.06.17</span>
@@ -412,7 +471,7 @@
             <h3>米イラン、戦闘終結覚書に署名——トランプ・ペゼシュキアン両大統領が合意</h3>
             <p>トランプ米大統領とイランのペゼシュキアン大統領が戦闘終結を定めた覚書に署名。2026年2月の米・イスラエル共同攻撃開始から約4か月で外交的決着へ向かう。ただしホルムズ海峡の事実上の封鎖状態は継続中。</p>
           </div>
-          <div class="card">
+          <div class="card" data-body="2026年2月28日未明（現地時間）、米軍とイスラエル軍はイランの核関連施設および革命防衛隊（IRGC）の主要拠点に対する大規模な航空・ミサイル攻撃を開始した。作戦は「オペレーション・ライジングサン」と報じられている。&#10;&#10;攻撃ではフォルドウ濃縮施設・ナタンズ核施設・イスファハン核研究センターが標的となり、複数のバンカーバスター爆弾と海上発射巡航ミサイルが使用された。この攻撃で最高指導者アリー・ハメネイー師が死亡したことをイラン国営メディアが確認。イスラム革命防衛隊評議会は次男のモジタバー・ハメネイー師を後継最高指導者に選出した。&#10;&#10;イランは直ちに報復攻撃を実施。弾道ミサイルと無人機をイスラエルおよびペルシャ湾岸の米軍基地に向けて発射し、ホルムズ海峡を封鎖。日本を含む世界の石油市場に甚大な打撃を与えた。国連安保理では緊急会合が召集されたが、米国の拒否権行使により決議は採択されなかった。">
             <div class="card-top">
               <span class="tag tag-iran">IRAN</span>
               <span class="card-date">2026.02.28</span>
@@ -420,7 +479,7 @@
             <h3>米軍・イスラエル軍がイランへ軍事攻撃——ハメネイ師死亡、後継に次男</h3>
             <p>米軍とイスラエル軍がイランの核関連施設への攻撃を開始。最高指導者アリ・ハメネイ師が死亡し、次男モジタバ師が後継として選出された。イランは報復攻撃を実施し中東全域の緊張が急騰した。</p>
           </div>
-          <div class="card">
+          <div class="card" data-body="イラン革命防衛隊（IRGC）は米・イスラエルの攻撃への報復として、世界の石油輸送の約20%が通過するホルムズ海峡を事実上封鎖した。海峡内に機雷を敷設するとともに、通過する商業タンカーを拿捕・警告射撃する行動を取り、外国船舶の通航を阻止した。&#10;&#10;この封鎖により原油価格は1バレル140ドルを突破し、日本の電力・石油会社の株価は急落。日本政府はエネルギー備蓄の放出と省エネルギー要請の発令を検討するなど、直接的な影響を受けた。サウジアラビアは増産で補おうとしたが、供給不足の解消には至らなかった。&#10;&#10;4月7日に米イラン間で一時停戦に関する覚書が交わされ、海峡の緊張は一部緩和されたが、IRGC艦艇は依然として海峡内でプレゼンスを示し続けている。6月17日の戦闘終結覚書でもホルムズ解放交渉は「継続協議事項」として留保されており、完全な正常化は見通せていない。">
             <div class="card-top">
               <span class="tag tag-iran">IRAN</span>
               <span class="card-date">2026.04.07</span>
@@ -428,7 +487,7 @@
             <h3>ホルムズ海峡、革命防衛隊が封鎖——世界経済に深刻な打撃</h3>
             <p>4月7日一時停戦合意前、イラン革命防衛隊がホルムズ海峡を事実上封鎖。世界の石油輸送の約20%が通過するこの海峡の封鎖により、原油価格が急騰、日本を含む輸入国でナフサ等の供給制約が顕在化。</p>
           </div>
-          <div class="card">
+          <div class="card" data-body="2021年以降、イランは国際原子力機関（IAEA）の追加議定書に基づく査察を段階的に制限し、2024年には一部施設へのIAEAアクセスを完全に遮断する法律を制定した。この措置により、イランの核兵器開発能力の実態把握が著しく困難になっていた。&#10;&#10;IAEAの報告によると、制限以前の時点でイランはウラン濃縮度60%まで達しており、核爆弾1発分に相当する高濃縮ウランをわずか数週間で製造できる「ブレイクアウト能力」を持つとされていた。核物理学者の間では、95%濃縮（兵器級）への移行は技術的に短期間で可能との分析が主流だった。&#10;&#10;2026年2月の米・イスラエル共同攻撃により、フォルドウ・ナタンズ・イスファハンの主要核関連施設は打撃を受けた模様だが、地下深部に建設されたフォルドウ施設への実際のダメージは不明。IAEAは査察再開を通じた実態確認を求めており、6月17日の覚書でイランは「段階的な査察受け入れ」を約束したが、その具体的な実施は未定だ。">
             <div class="card-top">
               <span class="tag tag-iran">IRAN</span>
               <span class="card-date">2025年〜</span>
@@ -443,7 +502,7 @@
       <div class="articles-section" id="pla">
         <div class="section-label">🤖 中ロ軍事技術</div>
         <div class="articles-grid">
-          <div class="card">
+          <div class="card" data-body="2025年11月5日、中国人民解放軍海軍は電磁弾射システム（EMALS）を搭載した空母「福建舰（Fujian）」の正式就役を宣言した。中国にとって3隻目の空母であり、独自開発した電磁カタパルト技術の実用化を初めて実現した艦艇だ。&#10;&#10;福建舰は満載排水量約8万トン。電磁カタパルト（電磁弾射）を4基装備し、ステルス艦載戦闘機「殲-35（J-35）」、改良型「殲-15T/DT」、早期警戒機「空警-600（KJ-600）」など複数機種の運用に対応。電磁カタパルトの採用により、スキージャンプ式（遼寧・山東）と比較して出撃率・搭載兵装量が大幅に向上している。&#10;&#10;就役により中国は「遼寧」「山東」「福建」の三空母体制を確立。空母打撃群として西太平洋・南シナ海・インド洋への展開が可能となり、台湾有事や南シナ海紛争における戦力投射能力が飛躍的に高まった。米海軍の分析では「福建の戦闘力は遼寧・山東の2倍以上」と評価されており、米空母打撃群との正面対決も理論上は可能な段階に達したとされる。">
             <div class="card-top">
               <span class="tag tag-pla">PLA</span>
               <span class="card-date">2025.11.05</span>
@@ -451,7 +510,7 @@
             <h3>中国海軍、電磁弾射型空母「福建」が正式就役——艦載機多機種の発着艦訓練完了</h3>
             <p>中国初の電磁カタパルト（EMALS）搭載空母・福建舰が正式就役。殲-35、殲-15T/DT、空警-600など複数機種の弾射起飛・着艦訓練を完了し、米空母打撃群に対抗し得る三航母体制の確立が現実味を帯びる。</p>
           </div>
-          <div class="card">
+          <div class="card" data-body="2025年11月14日、中国人民解放軍海軍の076型強襲揚陸艦「四川舰（Sichuan）」が初の海上試験を開始した。075型の後継として建造された世界最大級の強襲揚陸艦であり、満載排水量は4万トンを超えるとされる。&#10;&#10;四川舰の最大の特徴は電磁カタパルトの搭載で、固定翼戦闘機・ドローン（無人機）・ヘリコプターを同一甲板で運用できる。075型がヘリコプター・垂直離着陸機に限定されていたのに対し、076型はJ-35Bに相当するSTOVL戦闘機や攻撃型無人機の運用が可能とされており、「強襲揚陸艦と軽空母の中間」に位置する全く新しいカテゴリの艦艇として注目されている。&#10;&#10;台湾有事を想定した場合、四川舰のような大型揚陸艦は台湾海峡横断作戦の中核を担う存在となる。PLAは現在、075型を3隻・076型を少なくとも2隻建造中とされており、2030年代前半には大規模上陸作戦を実施できる戦力が整うとの分析がある。日本の防衛省もその動向を高い優先度で監視している。">
             <div class="card-top">
               <span class="tag tag-pla">PLA</span>
               <span class="card-date">2025.11.14</span>
@@ -459,7 +518,7 @@
             <h3>076型強襲揚陸艦「四川」が海上試験開始——電磁弾射で固定翼機・ドローン運用可能</h3>
             <p>満載排水量4万トン超の076型強襲揚陸艦・四川舰が初の海上試験へ。電磁弾射を搭載し固定翼戦闘機・ヘリコプター・無人機に対応可能。台湾有事を念頭に置いた上陸作戦能力の飛躍的向上を示す。</p>
           </div>
-          <div class="card">
+          <div class="card" data-body="2026年3月の全国人民代表大会（全人代）において、中国国防部は「スマート化戦争」への移行を加速する方針を正式に表明した。その中で人民解放軍が進める主要な無人・ロボット兵器プログラムの一端が明らかになった。&#10;&#10;「軍事ヒューマノイドロボット」は歩兵の危険任務（建物突入・爆発物処理・山岳偵察）を代替することを目標に開発中。宇宙戦闘ロボットは地球周回軌道上での衛星修復・妨害・破壊を目的としたロボットアームシステムで、既に試験的な打ち上げが行われたと報じられている。&#10;&#10;ドローン軍団（スウォーム）は数百機〜数千機の小型無人機が協調して行動するシステムで、空母甲板の制圧・防空網の飽和攻撃・精密打撃を想定している。AI訓練システムはプロパガンダ生成と敵国世論誘導も目的としており、情報戦分野での急速な能力向上が懸念される。「十五五」規画（2026〜2030年）ではこれらスマート化装備の実戦化を最優先課題と位置付けており、西側の想定より早い段階での実戦投入が現実のリスクとなりつつある。">
             <div class="card-top">
               <span class="tag tag-pla">PLA</span>
               <span class="card-date">2026.03.04</span>
@@ -467,7 +526,7 @@
             <h3>PLA、軍事ヒューマノイドロボット・宇宙戦ロボット・ドローン軍団を開発中</h3>
             <p>人民解放軍が軍事用ヒューマノイドロボット、宇宙戦闘ロボット、飛行ドローン軍団、プロパガンダAIの開発を進めていることが明らかに。「十五五」規画（2026〜2030年）でスマート化装備の実戦化を加速。</p>
           </div>
-          <div class="card">
+          <div class="card" data-body="ロシアの高出力レーザー兵器「ペレスベート（Peresvet）」は、2018年にプーチン大統領が初公開した対宇宙兵器（ASAT）であり、現在はロシア戦略ミサイル軍に正式配備されている。名称は中世ロシアの修道士兼騎士「アレクサンドル・ペレスベート」に由来する。&#10;&#10;その主な能力は、地上発射型の高出力レーザーで低軌道衛星（LEO・高度約300〜1,500km）のセンサーを「目くらまし（ブラインディング）」すること。レーザーを衛星の光学センサーや電子機器に照射して一時的あるいは永続的に機能を喪失させる。対象は米国のGPS衛星・偵察衛星・通信衛星などとされており、有事において米軍のC4ISR（指揮統制・通信・情報・偵察）能力を著しく低下させることを狙っている。&#10;&#10;物理的な破壊ではなく「機能妨害」を目的とするため、宇宙デブリを生成せず宇宙条約上のグレーゾーンに位置するとも分析される。米宇宙軍はペレスベートを深刻な脅威と見なしており、衛星の耐レーザー性向上と冗長化を急ピッチで進めている。中国もこれに類する地上発射型レーザー兵器「ZKZM-500」の上位版を開発中とされる。">
             <div class="card-top">
               <span class="tag tag-russia">RUSSIA</span>
               <span class="card-date">2026.06.27</span>
@@ -584,6 +643,19 @@
   <p style="margin-top:6px;"><a href="#">お問い合わせ</a> ／ <a href="privacy.html">プライバシーポリシー</a> ／ <a href="#">免責事項</a></p>
 </footer>
 
+<!-- 記事詳細モーダル -->
+<div class="modal-overlay" id="articleModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="閉じる">✕</button>
+    <div class="modal-meta">
+      <span class="tag" id="modalTag"></span>
+      <span class="modal-date" id="modalDate"></span>
+    </div>
+    <h2 class="modal-title" id="modalTitle"></h2>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
 <script>
   // ── Leafletマップの初期化 ──
   const map = L.map('map', {
@@ -638,6 +710,47 @@
     { lat: 35.0, lng: 58.0, color: '#8b5cf6', label: '⚛️ <b>イラン核施設跡</b>', desc: '米・イスラエル攻撃で主要核施設が打撃を受けた模様。IAEAが査察再開を要請。' },
     { lat: 40.0, lng: 127.0, color: '#8b5cf6', label: '💣 <b>北朝鮮核開発</b>', desc: '核弾頭の小型化・ICBM搭載技術の完成が近いとの分析。' },
   ];
+
+  // ── 記事モーダル ──
+  const modal    = document.getElementById('articleModal');
+  const modalTag  = document.getElementById('modalTag');
+  const modalDate = document.getElementById('modalDate');
+  const modalTitle= document.getElementById('modalTitle');
+  const modalBody = document.getElementById('modalBody');
+
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => {
+      const tagEl  = card.querySelector('.tag');
+      const dateEl = card.querySelector('.card-date');
+      const titleEl= card.querySelector('h3');
+      const bodyEl = card.querySelector('p');
+
+      // タグのクラスをそのままコピー
+      modalTag.className = tagEl.className;
+      modalTag.textContent = tagEl.textContent;
+      modalDate.textContent = dateEl.textContent;
+      modalTitle.textContent = titleEl.textContent;
+
+      // data-body があれば使い、改行（&#10;）を <p> に変換して表示
+      const rawBody = card.dataset.body || bodyEl.textContent;
+      modalBody.innerHTML = rawBody
+        .split('\n')
+        .filter(s => s.trim())
+        .map(s => `<p>${s}</p>`)
+        .join('');
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
   markers.forEach(m => {
     L.marker([m.lat, m.lng], { icon: makeIcon(m.color) })
