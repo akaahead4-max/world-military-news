@@ -4,9 +4,66 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>世界軍事情報 | グローバル安全保障モニター</title>
+
+  <!-- SEO メタタグ -->
+  <meta name="description" content="ウクライナ戦争・中東情勢・中ロ軍事技術など、世界の最新軍事ニュースをリアルタイムで提供。紛争強度マップ・速報フィード付き。">
+  <meta name="keywords" content="軍事情報,世界軍事,ウクライナ戦争,中東情勢,PLA,ロシア,NATO,安全保障,防衛ニュース">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://akaahead4-max.github.io/world-military-news/">
+
+  <!-- OGP (Open Graph) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://akaahead4-max.github.io/world-military-news/">
+  <meta property="og:title" content="世界軍事情報 | グローバル安全保障モニター">
+  <meta property="og:description" content="ウクライナ戦争・中東情勢・中ロ軍事技術など、世界の最新軍事ニュースをリアルタイムで提供。">
+  <meta property="og:image" content="https://akaahead4-max.github.io/world-military-news/ogp.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="世界軍事情報">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="世界軍事情報 | グローバル安全保障モニター">
+  <meta name="twitter:description" content="ウクライナ戦争・中東情勢・中ロ軍事技術など、世界の最新軍事ニュースをリアルタイムで提供。">
+  <meta name="twitter:image" content="https://akaahead4-max.github.io/world-military-news/ogp.png">
+
+  <!-- 構造化データ (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsMediaOrganization",
+    "name": "世界軍事情報",
+    "url": "https://akaahead4-max.github.io/world-military-news/",
+    "description": "世界の最新軍事ニュース・安全保障情報を提供するメディア",
+    "inLanguage": "ja",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://akaahead4-max.github.io/world-military-news/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <!-- Google AdSense（審査通過後にca-pub-XXXXXXXXXXをご自身のIDに変更） -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script> -->
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <style>
+    /* AdSense広告スタイル */
+    .ad-unit {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px;
+      margin: 16px 0;
+      text-align: center;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 11px;
+    }
     :root {
       --bg: #0a0c10;
       --surface: #13161d;
@@ -298,6 +355,12 @@
         </div>
       </div>
 
+      <!-- 広告枠（ページ上部） -->
+      <div class="ad-unit">
+        <!-- AdSense審査通過後にここに広告コードを貼り付けてください -->
+        広告スペース（728×90）
+      </div>
+
       <!-- ウクライナ -->
       <div class="articles-section" id="ukraine">
         <div class="section-label">🇺🇦 ウクライナ戦争</div>
@@ -507,13 +570,18 @@
           <a href="https://www.understandingwar.org" target="_blank" style="color:var(--accent2);text-decoration:none;">📌 ISW（戦争研究所）</a>
         </div>
       </div>
+      <!-- サイドバー広告枠 -->
+      <div class="ad-unit" style="min-height:250px;">
+        <!-- AdSense審査通過後にここに広告コードを貼り付けてください -->
+        広告スペース（300×250）
+      </div>
     </aside>
   </div>
 </div>
 
 <footer>
   <p>© 2026 世界軍事情報 | 情報はすべて公開情報を基にしています。軍事活動の助長・支援を目的とするものではありません。</p>
-  <p style="margin-top:6px;"><a href="#">お問い合わせ</a> ／ <a href="#">免責事項</a></p>
+  <p style="margin-top:6px;"><a href="#">お問い合わせ</a> ／ <a href="privacy.html">プライバシーポリシー</a> ／ <a href="#">免責事項</a></p>
 </footer>
 
 <script>
