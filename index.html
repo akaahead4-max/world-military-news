@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ä¸çè»äºæå ± | ã°ã­ã¼ãã«å®å¨ä¿éã¢ãã¿ã¼</title>
+  <title>世界軍事情報 | グローバル安全保障モニター</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <style>
@@ -29,7 +29,7 @@
       line-height: 1.6;
     }
 
-    /* ââ ãããã¼ ââ */
+    /* ── ヘッダー ── */
     header {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
@@ -84,7 +84,7 @@
       0%,100% { opacity: 1; } 50% { opacity: .3; }
     }
 
-    /* ââ ã¬ã¤ã¢ã¦ã ââ */
+    /* ── レイアウト ── */
     .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
     .page-header {
       padding: 28px 0 20px;
@@ -111,7 +111,7 @@
       .layout { grid-template-columns: 1fr; }
     }
 
-    /* ââ å°å³ ââ */
+    /* ── 地図 ── */
     .map-section { }
     .section-label {
       font-size: 11px;
@@ -143,7 +143,7 @@
       border-radius: 50%;
     }
 
-    /* ââ ãã¥ã¼ã¹ã«ã¼ã ââ */
+    /* ── ニュースカード ── */
     .articles-section { margin-top: 32px; }
     .articles-grid {
       display: grid;
@@ -196,7 +196,7 @@
       overflow: hidden;
     }
 
-    /* ââ ãµã¤ããã¼ ââ */
+    /* ── サイドバー ── */
     .sidebar {}
     .sidebar-block {
       background: var(--surface);
@@ -247,7 +247,7 @@
     .medium { background: rgba(245,158,11,.2); color: #fbbf24; }
     .low    { background: rgba(34,197,94,.2);  color: #4ade80; }
 
-    /* ââ ããã¿ã¼ ââ */
+    /* ── フッター ── */
     footer {
       background: var(--surface);
       border-top: 1px solid var(--border);
@@ -263,14 +263,14 @@
 
 <header>
   <a class="logo" href="#">
-    <div class="logo-icon">ð</div>
-    <span class="logo-text">ä¸çè»äºæå ±</span>
+    <div class="logo-icon">🌐</div>
+    <span class="logo-text">世界軍事情報</span>
   </a>
   <nav>
-    <a href="#map-section" class="active">å°å³</a>
-    <a href="#ukraine">ã¦ã¯ã©ã¤ã</a>
-    <a href="#iran">ä¸­æ±</a>
-    <a href="#pla">ä¸­ã­è»æè¡</a>
+    <a href="#map-section" class="active">地図</a>
+    <a href="#ukraine">ウクライナ</a>
+    <a href="#iran">中東</a>
+    <a href="#pla">中ロ軍技術</a>
   </nav>
   <div class="live-badge">
     <div class="live-dot"></div>LIVE
@@ -279,232 +279,232 @@
 
 <div class="container">
   <div class="page-header">
-    <h1>ðºï¸ ã°ã­ã¼ãã«å®å¨ä¿éã¢ãã¿ã¼</h1>
-    <div class="updated">æçµæ´æ°: 2026å¹´6æ27æ¥ ï¼ åå½ã®è»äºæ´»åã»ç´äºæå ±ãä¸æ¬æä¾</div>
+    <h1>🗺️ グローバル安全保障モニター</h1>
+    <div class="updated">最終更新: 2026年6月27日 ／ 各国の軍事活動・紛争情報を一括提供</div>
   </div>
 
   <div class="layout">
-    <!-- ã¡ã¤ã³ã³ã³ãã³ã -->
+    <!-- メインコンテンツ -->
     <main>
-      <!-- å°å³ -->
+      <!-- 地図 -->
       <div class="map-section" id="map-section">
-        <div class="section-label">ð ç´äºã»è»äºæ´»åããã</div>
+        <div class="section-label">📍 紛争・軍事活動マップ</div>
         <div id="map"></div>
         <div class="map-legend">
-          <div class="legend-item"><div class="legend-dot" style="background:#ef4444"></div>é«å¼·åº¦ç´äº</div>
-          <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div>ä¸­å¼·åº¦ç·å¼µ</div>
-          <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div>è»äºæ¼ç¿ã»å±é</div>
-          <div class="legend-item"><div class="legend-dot" style="background:#8b5cf6"></div>æ ¸ã»ããµã¤ã«æ´»å</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#ef4444"></div>高強度紛争</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div>中強度緊張</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div>軍事演習・展開</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#8b5cf6"></div>核・ミサイル活動</div>
         </div>
       </div>
 
-      <!-- ã¦ã¯ã©ã¤ã -->
+      <!-- ウクライナ -->
       <div class="articles-section" id="ukraine">
-        <div class="section-label">ðºð¦ ã¦ã¯ã©ã¤ãæ¦äº</div>
+        <div class="section-label">🇺🇦 ウクライナ戦争</div>
         <div class="articles-grid">
           <div class="card">
             <div class="card-top">
               <span class="tag tag-ukraine">UKRAINE</span>
               <span class="card-date">2026.06.16</span>
             </div>
-            <h3>G7ãã¦ã¯ã©ã¤ãæ¦éçµçµã¸çµæå¼·åââãã©ã³ãä»²ä»ã®åæ¦äº¤æ¸ã¯åæ»</h3>
-            <p>G7é¦è³ãã¦ã¯ã©ã¤ãã®æ¦éçµçµã«åããçµæãæ¹ãã¦è¡¨æãä¸æ¹ã§ãã©ã³ãæ¿æ¨©ä¸»å°ã®ç±³ã­ã¦ã¯ã©ã¤ãä¸èäº¤æ¸ã«å®è³ªçé²å±ã¯ãªãã2027å¹´ã¾ã§æ¦äºãç¶ç¶ããå¯è½æ§ãå°éå®¶ãææããã¦ããã</p>
+            <h3>G7、ウクライナ戦闘終結へ結束強化——トランプ仲介の停戦交渉は停滞</h3>
+            <p>G7首脳がウクライナの戦闘終結に向けた結束を改めて表明。一方でトランプ政権主導の米ロウクライナ三者交渉に実質的進展はなく、2027年まで戦争が継続する可能性が専門家から指摘されている。</p>
           </div>
           <div class="card">
             <div class="card-top">
               <span class="tag tag-ukraine">UKRAINE</span>
               <span class="card-date">2026.05.24</span>
             </div>
-            <h3>ã­ã·ã¢ããªã¬ã·ã¥ãã¯ããµã¤ã«ãã­ã¼ã¦è¿éã¸çºå°ââå¤å¼¾é ­åMIRVã§å¨åèªç¤º</h3>
-            <p>ã­ã·ã¢è»ã¯ãªã¬ã·ã¥ãã¯ãçºå°ãã­ã¼ã¦åæ¹80kmã®ãã©ã»ãã§ã«ã¯ã´ã¡ã«çå¼¾ãããµã¤ã«ã¯6çºã®ã¯ã©ã¹ã¿ã¼å¼¾é ­ãæ­è¼ããããã6åã®å­çå¼¾ã«åè£ããå¤å¼¾é ­åãNATOè«¸å½ã¯å¼·ãéé£ããã</p>
+            <h3>ロシア、オレシュニクミサイルをキーウ近郊へ発射——多弾頭型MIRVで威力誇示</h3>
+            <p>ロシア軍はオレシュニクを発射、キーウ南方80kmのビラ・ツェルクヴァに着弾。ミサイルは6発のクラスター弾頭を搭載しそれぞれ6個の子爆弾に分裂する多弾頭型。NATO諸国は強く非難した。</p>
           </div>
           <div class="card">
             <div class="card-top">
               <span class="tag tag-ukraine">UKRAINE</span>
               <span class="card-date">2026.02.24</span>
             </div>
-            <h3>å½é£ç·ä¼ãã­ã·ã¢ä¾µæ»4å¹´ç®ã«ãæ°¸ç¶çå¹³åãæ±ºè­°æ¡æââç±³å½ã¯æ£æ¨©</h3>
-            <p>å½é£ç·æ¥ç¹å¥ä¼åã§ãã¦ã¯ã©ã¤ãã«ãããæ°¸ç¶çãªå¹³åã¸ã®æ¯æ´ãæ±ºè­°ãæ¡æãç¬¬2æ¬¡ãã©ã³ãæ¿æ¨©ä¸ã§ç±³å½ã¯æ£æ¨©ãæ¬§å·åå½ã¯NATOé¢ããè¦è¶ããç¬èªé²è¡ååãå éããã¦ããã</p>
+            <h3>国連総会、ロシア侵攻4年目に「永続的平和」決議採択——米国は棄権</h3>
+            <p>国連緊急特別会合で「ウクライナにおける永続的な平和への支援」決議を採択。第2次トランプ政権下で米国は棄権。欧州各国はNATO離れを見越した独自防衛協力を加速させている。</p>
           </div>
           <div class="card">
             <div class="card-top">
               <span class="tag tag-russia">RUSSIA</span>
               <span class="card-date">2026.06.27</span>
             </div>
-            <h3>æ¬§å·ããç±³å½æãé²è¡ååããå éââååè»äºæ¯åºã®æ¥å¢ãç¶ã</h3>
-            <p>ãã©ã³ãæ¿æ¨©ã®NATOé¢ããåããEUã»è±å½ä¸»å°ã®ç¬èªé²è¡ä½å¶ã®æ§ç¯ãå éããã¤ãã»ãã¼ã©ã³ããä¸­å¿ã¨ããæ±æ¬§é²è¡ã©ã¤ã³ã®å¼·åãé²ãã§ãããé²è¡è²»ã®GDPæ¯3ã4%ã¸ã®å¼ãä¸ããè­°è«ããã¦ããã</p>
+            <h3>欧州、「米国抜き防衛協力」を加速——域内軍事支出の急増が続く</h3>
+            <p>トランプ政権のNATO離れを受け、EU・英国主導の独自防衛体制の構築が加速。ドイツ・ポーランドを中心とした東欧防衛ラインの強化が進んでおり、防衛費のGDP比3〜4%への引き上げが議論されている。</p>
           </div>
         </div>
       </div>
 
-      <!-- ã¤ã©ã³ã»ä¸­æ± -->
+      <!-- イラン・中東 -->
       <div class="articles-section" id="iran">
-        <div class="section-label">ð ä¸­æ±æå¢</div>
+        <div class="section-label">🕌 中東情勢</div>
         <div class="articles-grid">
           <div class="card">
             <div class="card-top">
               <span class="tag tag-iran">IRAN</span>
               <span class="card-date">2026.06.17</span>
             </div>
-            <h3>ç±³ã¤ã©ã³ãæ¦éçµçµè¦æ¸ã«ç½²åââãã©ã³ãã»ãã¼ã·ã¥ã­ã¢ã³ä¸¡å¤§çµ±é ãåæ</h3>
-            <p>ãã©ã³ãç±³å¤§çµ±é ã¨ã¤ã©ã³ã®ãã¼ã·ã¥ã­ã¢ã³å¤§çµ±é ãæ¦éçµçµãå®ããè¦æ¸ã«ç½²åã2026å¹´2æã®ç±³ã»ã¤ã¹ã©ã¨ã«å±åæ»æéå§ããç´4ãæã§å¤äº¤çæ±ºçã¸åããããã ããã«ã ãºæµ·å³¡ã®äºå®ä¸ã®å°éç¶æã¯ç¶ç¶ä¸­ã</p>
+            <h3>米イラン、戦闘終結覚書に署名——トランプ・ペゼシュキアン両大統領が合意</h3>
+            <p>トランプ米大統領とイランのペゼシュキアン大統領が戦闘終結を定めた覚書に署名。2026年2月の米・イスラエル共同攻撃開始から約4か月で外交的決着へ向かう。ただしホルムズ海峡の事実上の封鎖状態は継続中。</p>
           </div>
           <div class="card">
             <div class="card-top">
               <span class="tag tag-iran">IRAN</span>
               <span class="card-date">2026.02.28</span>
             </div>
-            <h3>ç±³è»ã»ã¤ã¹ã©ã¨ã«è»ãã¤ã©ã³ã¸è»äºæ»æââãã¡ãã¤å¸«æ­»äº¡ãå¾ç¶ã«æ¬¡ç·</h3>
-            <p>ç±³è»ã¨ã¤ã¹ã©ã¨ã«è»ãã¤ã©ã³ã®æ ¸é¢é£æ½è¨­ã¸ã®æ»æãéå§ãæé«æå°èã¢ãªã»ãã¡ãã¤å¸«ãæ­»äº¡ããæ¬¡ç·ã¢ã¸ã¿ãå¸«ãå¾ç¶ã¨ãã¦é¸åºããããã¤ã©ã³ã¯å ±å¾©æ»æãå®æ½ãä¸­æ±å¨åã®ç·å¼µãæ¥é¨°ããã</p>
+            <h3>米軍・イスラエル軍がイランへ軍事攻撃——ハメネイ師死亡、後継に次男</h3>
+            <p>米軍とイスラエル軍がイランの核関連施設への攻撃を開始。最高指導者アリ・ハメネイ師が死亡し、次男モジタバ師が後継として選出された。イランは報復攻撃を実施し中東全域の緊張が急騰した。</p>
           </div>
           <div class="card">
             <div class="card-top">
               <span class="tag tag-iran">IRAN</span>
               <span class="card-date">2026.04.07</span>
             </div>
-            <h3>ãã«ã ãºæµ·å³¡ãé©å½é²è¡éãå°éââä¸ççµæ¸ã«æ·±å»ãªææ</h3>
-            <p>4æ7æ¥ä¸æåæ¦åæåãã¤ã©ã³é©å½é²è¡éããã«ã ãºæµ·å³¡ãäºå®ä¸å°éãä¸çã®ç³æ²¹è¼¸éã®ç´20%ãééãããã®æµ·å³¡ã®å°éã«ãããåæ²¹ä¾¡æ ¼ãæ¥é¨°ãæ¥æ¬ãå«ãè¼¸å¥å½ã§ãããµç­ã®ä¾çµ¦å¶ç´ãé¡å¨åã</p>
+            <h3>ホルムズ海峡、革命防衛隊が封鎖——世界経済に深刻な打撃</h3>
+            <p>4月7日一時停戦合意前、イラン革命防衛隊がホルムズ海峡を事実上封鎖。世界の石油輸送の約20%が通過するこの海峡の封鎖により、原油価格が急騰、日本を含む輸入国でナフサ等の供給制約が顕在化。</p>
           </div>
           <div class="card">
             <div class="card-top">
               <span class="tag tag-iran">IRAN</span>
-              <span class="card-date">2025å¹´ã</span>
+              <span class="card-date">2025年〜</span>
             </div>
-            <h3>ã¤ã©ã³ãIAEAæ»å¯å¶éãå½åæ³åââæ ¸åµå¨éçºè½åã®æ¥éãªåä¸ãæ¸å¿µ</h3>
-            <p>ã¤ã©ã³ãå½éåå­åæ©é¢ã®æ»å¯ãå¶éããå½åæ³ãå¶å®ããæ ¸éçºã®éææ§ãå¤§å¹ã«ä½ä¸ãæ ¸åµå¨éçºè½åã®æ¥éãªåä¸ãå½éç¤¾ä¼ã®æ¸å¿µãå¼ãã§ãããä»åã®æ»æã§ãã®æ½è¨­ã®å¤ããææãåããã¨ãããã</p>
+            <h3>イラン、IAEA査察制限を国内法化——核兵器開発能力の急速な向上を懸念</h3>
+            <p>イランが国際原子力機関の査察を制限する国内法を制定し、核開発の透明性が大幅に低下。核兵器開発能力の急速な向上が国際社会の懸念を呼んでいた。今回の攻撃でその施設の多くが打撃を受けたとされる。</p>
           </div>
         </div>
       </div>
 
-      <!-- PLAã»ã­ã·ã¢æè¡ -->
+      <!-- PLA・ロシア技術 -->
       <div class="articles-section" id="pla">
-        <div class="section-label">ð¤ ä¸­ã­è»äºæè¡</div>
+        <div class="section-label">🤖 中ロ軍事技術</div>
         <div class="articles-grid">
           <div class="card">
             <div class="card-top">
               <span class="tag tag-pla">PLA</span>
               <span class="card-date">2025.11.05</span>
             </div>
-            <h3>ä¸­å½æµ·è»ãé»ç£å¼¾å°åç©ºæ¯ãç¦å»ºããæ­£å¼å°±å½¹ââè¦è¼æ©å¤æ©ç¨®ã®çºçè¦è¨ç·´å®äº</h3>
-            <p>ä¸­å½åã®é»ç£ã«ã¿ãã«ãï¼EMALSï¼æ­è¼ç©ºæ¯ã»ç¦å»ºè°ãæ­£å¼å°±å½¹ãæ®²-35ãæ®²-15T/DTãç©ºè­¦-600ãªã©è¤æ°æ©ç¨®ã®å¼¾å°èµ·é£ã»çè¦è¨ç·´ãå®äºããç±³ç©ºæ¯ææç¾¤ã«å¯¾æãå¾ãä¸èªæ¯ä½å¶ã®ç¢ºç«ãç¾å®å³ãå¸¯ã³ãã</p>
+            <h3>中国海軍、電磁弾射型空母「福建」が正式就役——艦載機多機種の発着艦訓練完了</h3>
+            <p>中国初の電磁カタパルト（EMALS）搭載空母・福建舰が正式就役。殲-35、殲-15T/DT、空警-600など複数機種の弾射起飛・着艦訓練を完了し、米空母打撃群に対抗し得る三航母体制の確立が現実味を帯びる。</p>
           </div>
           <div class="card">
             <div class="card-top">
               <span class="tag tag-pla">PLA</span>
               <span class="card-date">2025.11.14</span>
             </div>
-            <h3>076åå¼·è¥²æé¸è¦ãåå·ããæµ·ä¸è©¦é¨éå§ââé»ç£å¼¾å°ã§åºå®ç¿¼æ©ã»ãã­ã¼ã³éç¨å¯è½</h3>
-            <p>æºè¼ææ°´é4ä¸ãã³è¶ã®076åå¼·è¥²æé¸è¦ã»åå·è°ãåã®æµ·ä¸è©¦é¨ã¸ãé»ç£å¼¾å°ãæ­è¼ãåºå®ç¿¼æ¦éæ©ã»ããªã³ãã¿ã¼ã»ç¡äººæ©ã«å¯¾å¿å¯è½ãå°æ¹¾æäºãå¿µé ­ã«ç½®ããä¸é¸ä½æ¦è½åã®é£èºçåä¸ãç¤ºãã</p>
+            <h3>076型強襲揚陸艦「四川」が海上試験開始——電磁弾射で固定翼機・ドローン運用可能</h3>
+            <p>満載排水量4万トン超の076型強襲揚陸艦・四川舰が初の海上試験へ。電磁弾射を搭載し固定翼戦闘機・ヘリコプター・無人機に対応可能。台湾有事を念頭に置いた上陸作戦能力の飛躍的向上を示す。</p>
           </div>
           <div class="card">
             <div class="card-top">
               <span class="tag tag-pla">PLA</span>
               <span class="card-date">2026.03.04</span>
             </div>
-            <h3>PLAãè»äºãã¥ã¼ããã¤ãã­ãããã»å®å®æ¦ã­ãããã»ãã­ã¼ã³è»å£ãéçºä¸­</h3>
-            <p>äººæ°è§£æ¾è»ãè»äºç¨ãã¥ã¼ããã¤ãã­ããããå®å®æ¦éã­ããããé£è¡ãã­ã¼ã³è»å£ããã­ãã¬ã³ãAIã®éçºãé²ãã¦ãããã¨ãæããã«ããåäºäºãè¦ç»ï¼2026ã2030å¹´ï¼ã§ã¹ãã¼ãåè£åã®å®æ¦åãå éã</p>
+            <h3>PLA、軍事ヒューマノイドロボット・宇宙戦ロボット・ドローン軍団を開発中</h3>
+            <p>人民解放軍が軍事用ヒューマノイドロボット、宇宙戦闘ロボット、飛行ドローン軍団、プロパガンダAIの開発を進めていることが明らかに。「十五五」規画（2026〜2030年）でスマート化装備の実戦化を加速。</p>
           </div>
           <div class="card">
             <div class="card-top">
               <span class="tag tag-russia">RUSSIA</span>
               <span class="card-date">2026.06.27</span>
             </div>
-            <h3>ã­ã·ã¢ããã¬ã¹ãã¼ããã¬ã¼ã¶ã¼åµå¨ââé«åº¦1,500kmã®è¡æãç¡å¹åããå¯¾è¡æåµå¨</h3>
-            <p>æ¦ç¥ããµã¤ã«è»ã«éåããã¦ããã­ã·ã¢ã®é«åºåã¬ã¼ã¶ã¼ããã¬ã¹ãã¼ããã¯ãå°ä¸ããé«åº¦1,500kmã¾ã§ã®è¡æããç®ããã¾ããããè½åãæã¤ã¨ããããç±³å½ã®GPSã»åµå¯è¡æãç¡ååããå¯¾å®å®åµå¨ã¨ãã¦æ©è½ããã</p>
+            <h3>ロシア「ペレスベート」レーザー兵器——高度1,500kmの衛星を無効化する対衛星兵器</h3>
+            <p>戦略ミサイル軍に配備されているロシアの高出力レーザー「ペレスベート」は、地上から高度1,500kmまでの衛星を「目くらまし」する能力を持つとされる。米国のGPS・偵察衛星を無力化する対宇宙兵器として機能する。</p>
           </div>
         </div>
       </div>
     </main>
 
-    <!-- ãµã¤ããã¼ -->
+    <!-- サイドバー -->
     <aside class="sidebar">
-      <!-- éå ±ãã£ã¼ã -->
+      <!-- 速報フィード -->
       <div class="sidebar-block">
-        <h2>â¡ éå ±ãã£ã¼ã</h2>
+        <h2>⚡ 速報フィード</h2>
         <div class="flash-item">
           <div class="flash-tag">IRAN</div>
-          <p>ç±³ã¤ã©ã³æ¦éçµçµè¦æ¸ã«ç½²åããã«ã ãºå°éã®è§£é¤äº¤æ¸ãéå§ã</p>
-          <div class="flash-time">6æ17æ¥</div>
+          <p>米イラン戦闘終結覚書に署名。ホルムズ封鎖の解除交渉が開始。</p>
+          <div class="flash-time">6月17日</div>
         </div>
         <div class="flash-item">
           <div class="flash-tag">UKRAINE</div>
-          <p>G7ãã¦ã¯ã©ã¤ãæ¯æ´ã®ç¶ç¶ãç¢ºèªãæ¬§å·ç¬èªé²è¡ååãå éã</p>
-          <div class="flash-time">6æ16æ¥</div>
+          <p>G7がウクライナ支援の継続を確認、欧州独自防衛協力が加速。</p>
+          <div class="flash-time">6月16日</div>
         </div>
         <div class="flash-item">
           <div class="flash-tag">PLA</div>
-          <p>äººæ°è§£æ¾è»ãAIæ­è¼ã®è»äºã­ãããéçºãå¬å¼ã«èªããã</p>
-          <div class="flash-time">3æ4æ¥</div>
+          <p>人民解放軍、AI搭載の軍事ロボット開発を公式に認める。</p>
+          <div class="flash-time">3月4日</div>
         </div>
         <div class="flash-item">
           <div class="flash-tag">RUSSIA</div>
-          <p>ã­ã·ã¢ããªã¬ã·ã¥ãã¯å¤å¼¾é ­ããµã¤ã«ãã¦ã¯ã©ã¤ãã¸çºå°ã</p>
-          <div class="flash-time">5æ24æ¥</div>
+          <p>ロシア、オレシュニク多弾頭ミサイルをウクライナへ発射。</p>
+          <div class="flash-time">5月24日</div>
         </div>
         <div class="flash-item">
           <div class="flash-tag">PLA</div>
-          <p>076åå¼·è¥²æé¸è¦ãåå·ããæµ·ä¸è©¦é¨ãåºå®ç¿¼æ©ã®é»ç£å¼¾å°ãç¢ºèªã</p>
-          <div class="flash-time">11æ14æ¥</div>
+          <p>076型強襲揚陸艦「四川」が海上試験。固定翼機の電磁弾射を確認。</p>
+          <div class="flash-time">11月14日</div>
         </div>
       </div>
 
-      <!-- ç´äºå¼·åº¦ä¸è¦§ -->
+      <!-- 紛争強度一覧 -->
       <div class="sidebar-block">
-        <h2>ð¥ ç´äºå¼·åº¦ã¢ãã¿ã¼</h2>
+        <h2>🔥 紛争強度モニター</h2>
         <div class="conflict-item">
           <div class="conflict-name">
             <div class="conflict-dot" style="background:#ef4444"></div>
-            ã¦ã¯ã©ã¤ãæ¦äº
+            ウクライナ戦争
           </div>
-          <span class="intensity high">é«</span>
+          <span class="intensity high">高</span>
         </div>
         <div class="conflict-item">
           <div class="conflict-name">
             <div class="conflict-dot" style="background:#f59e0b"></div>
-            ã¤ã©ã³ã»ä¸­æ±
+            イラン・中東
           </div>
-          <span class="intensity medium">ä¸­ï¼åæ¦ä¸­ï¼</span>
+          <span class="intensity medium">中（停戦中）</span>
         </div>
         <div class="conflict-item">
           <div class="conflict-name">
             <div class="conflict-dot" style="background:#f59e0b"></div>
-            å°æ¹¾æµ·å³¡
+            台湾海峡
           </div>
-          <span class="intensity medium">ä¸­</span>
+          <span class="intensity medium">中</span>
         </div>
         <div class="conflict-item">
           <div class="conflict-name">
             <div class="conflict-dot" style="background:#3b82f6"></div>
-            åã·ãæµ·
+            南シナ海
           </div>
-          <span class="intensity medium">ä¸­</span>
+          <span class="intensity medium">中</span>
         </div>
         <div class="conflict-item">
           <div class="conflict-name">
             <div class="conflict-dot" style="background:#22c55e"></div>
-            æé®®åå³¶
+            朝鮮半島
           </div>
-          <span class="intensity low">ä½</span>
+          <span class="intensity low">低</span>
         </div>
         <div class="conflict-item">
           <div class="conflict-name">
             <div class="conflict-dot" style="background:#22c55e"></div>
-            ã¤ã³ãã»ãã­ã¹ã¿ã³
+            インド・パキスタン
           </div>
-          <span class="intensity low">ä½</span>
+          <span class="intensity low">低</span>
         </div>
       </div>
 
-      <!-- é¢é£ãªã³ã¯ -->
+      <!-- 関連リンク -->
       <div class="sidebar-block">
-        <h2>ð ä¸æ¬¡æå ±æº</h2>
+        <h2>🔗 一次情報源</h2>
         <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;">
-          <a href="https://www.mod.go.jp" target="_blank" style="color:var(--accent2);text-decoration:none;">ð é²è¡çã»èªè¡é</a>
-          <a href="https://www.jiia.or.jp" target="_blank" style="color:var(--accent2);text-decoration:none;">ð æ¥æ¬å½éåé¡ç ç©¶æ</a>
-          <a href="https://www.spf.org" target="_blank" style="color:var(--accent2);text-decoration:none;">ð ç¬¹å·å¹³åè²¡å£</a>
-          <a href="https://www.iaea.org" target="_blank" style="color:var(--accent2);text-decoration:none;">ð IAEAï¼å½éåå­åæ©é¢ï¼</a>
-          <a href="https://www.nato.int" target="_blank" style="color:var(--accent2);text-decoration:none;">ð NATOå¬å¼ãµã¤ã</a>
-          <a href="https://www.understandingwar.org" target="_blank" style="color:var(--accent2);text-decoration:none;">ð ISWï¼æ¦äºç ç©¶æï¼</a>
+          <a href="https://www.mod.go.jp" target="_blank" style="color:var(--accent2);text-decoration:none;">📌 防衛省・自衛隊</a>
+          <a href="https://www.jiia.or.jp" target="_blank" style="color:var(--accent2);text-decoration:none;">📌 日本国際問題研究所</a>
+          <a href="https://www.spf.org" target="_blank" style="color:var(--accent2);text-decoration:none;">📌 笹川平和財団</a>
+          <a href="https://www.iaea.org" target="_blank" style="color:var(--accent2);text-decoration:none;">📌 IAEA（国際原子力機関）</a>
+          <a href="https://www.nato.int" target="_blank" style="color:var(--accent2);text-decoration:none;">📌 NATO公式サイト</a>
+          <a href="https://www.understandingwar.org" target="_blank" style="color:var(--accent2);text-decoration:none;">📌 ISW（戦争研究所）</a>
         </div>
       </div>
     </aside>
@@ -512,12 +512,12 @@
 </div>
 
 <footer>
-  <p>Â© 2026 ä¸çè»äºæå ± | æå ±ã¯ãã¹ã¦å¬éæå ±ãåºã«ãã¦ãã¾ããè»äºæ´»åã®å©é·ã»æ¯æ´ãç®çã¨ãããã®ã§ã¯ããã¾ããã</p>
-  <p style="margin-top:6px;"><a href="#">ãåãåãã</a> ï¼ <a href="#">åè²¬äºé </a></p>
+  <p>© 2026 世界軍事情報 | 情報はすべて公開情報を基にしています。軍事活動の助長・支援を目的とするものではありません。</p>
+  <p style="margin-top:6px;"><a href="#">お問い合わせ</a> ／ <a href="#">免責事項</a></p>
 </footer>
 
 <script>
-  // ââ Leafletãããã®åæå ââ
+  // ── Leafletマップの初期化 ──
   const map = L.map('map', {
     center: [30, 30],
     zoom: 2,
@@ -525,14 +525,14 @@
     attributionControl: true
   });
 
-  // ãã¼ã¯ãã¼ãã®ã¿ã¤ã«ï¼CartoDB Dark Matterï¼
+  // ダークテーマのタイル（CartoDB Dark Matter）
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
     maxZoom: 19
   }).addTo(map);
 
-  // ãã¼ã«ã¼ãä½ãã¦ã¼ãã£ãªãã£
+  // マーカーを作るユーティリティ
   function makeIcon(color) {
     return L.divIcon({
       className: '',
@@ -548,27 +548,27 @@
     });
   }
 
-  // ç´äºã»è»äºæ´»åãã¼ã¿
+  // 紛争・軍事活動データ
   const markers = [
-    // é«å¼·åº¦ç´äºï¼èµ¤ï¼
-    { lat: 49.0, lng: 32.0, color: '#ef4444', label: 'ðºð¦ <b>ã¦ã¯ã©ã¤ãæ¦äº</b>', desc: 'ã­ã·ã¢ã«ããå¨é¢ä¾µæ»ç¶ç¶ä¸­ãåæ¦äº¤æ¸ã¯é£èªããªã¬ã·ã¥ãã¯ããµã¤ã«ä½¿ç¨ãç¢ºèªã' },
-    { lat: 35.7, lng: 51.4, color: '#ef4444', label: 'ð®ð· <b>ã¤ã©ã³ã»ç±³å½è¡çª</b>', desc: '2026å¹´2ã4æãç±³ã»ã¤ã¹ã©ã¨ã«å±åæ»æâãã¡ãã¤å¸«æ­»äº¡âåæ¦è¦æ¸ç½²åã' },
-    { lat: 29.5, lng: 34.8, color: '#ef4444', label: 'ð®ð± <b>ä¸­æ±ã»ã¬ã¶å¨è¾º</b>', desc: 'ã¤ã¹ã©ã¨ã«ã«ããè»äºä½æ¦ç¶ç¶ãç±³ã®ä»²ä»ã§æ­ç¶çãªåæ¦äº¤æ¸ã' },
+    // 高強度紛争（赤）
+    { lat: 49.0, lng: 32.0, color: '#ef4444', label: '🇺🇦 <b>ウクライナ戦争</b>', desc: 'ロシアによる全面侵攻継続中。停戦交渉は難航。オレシュニクミサイル使用を確認。' },
+    { lat: 35.7, lng: 51.4, color: '#ef4444', label: '🇮🇷 <b>イラン・米国衝突</b>', desc: '2026年2〜4月。米・イスラエル共同攻撃→ハメネイ師死亡→停戦覚書署名。' },
+    { lat: 29.5, lng: 34.8, color: '#ef4444', label: '🇮🇱 <b>中東・ガザ周辺</b>', desc: 'イスラエルによる軍事作戦継続。米の仲介で断続的な停戦交渉。' },
 
-    // ä¸­å¼·åº¦ç·å¼µï¼ãªã¬ã³ã¸ï¼
-    { lat: 24.0, lng: 121.5, color: '#f59e0b', label: 'ð¹ð¼ <b>å°æ¹¾æµ·å³¡</b>', desc: 'PLAæ¼ç¿ãé »çºãç¦å»ºç©ºæ¯éç¨éå§ã§å°æ¹¾å°éã·ãã¥ã¬ã¼ã·ã§ã³ãç¾å®å³ãå¢ãã' },
-    { lat: 12.0, lng: 114.0, color: '#f59e0b', label: 'ð <b>åã·ãæµ·</b>', desc: 'ãã£ãªãã³ã»ä¸­å½éã®è»äºçæ©æ¦ç¶ç¶ãPLAãåæ²è«¸å³¶ã§ã®æ½è¨­æ¡å¼µãå éã' },
-    { lat: 26.5, lng: 57.0, color: '#f59e0b', label: 'ð¢ <b>ãã«ã ãºæµ·å³¡</b>', desc: 'ã¤ã©ã³é©å½é²è¡éã«ããå°éã®å½±é¿ãç¶ç¶ãç³æ²¹è¼¸éã«æ·±å»ãªå½±é¿ã' },
+    // 中強度緊張（オレンジ）
+    { lat: 24.0, lng: 121.5, color: '#f59e0b', label: '🇹🇼 <b>台湾海峡</b>', desc: 'PLA演習が頻発。福建空母運用開始で台湾封鎖シミュレーションが現実味を増す。' },
+    { lat: 12.0, lng: 114.0, color: '#f59e0b', label: '🌏 <b>南シナ海</b>', desc: 'フィリピン・中国間の軍事的摩擦継続。PLAが南沙諸島での施設拡張を加速。' },
+    { lat: 26.5, lng: 57.0, color: '#f59e0b', label: '🚢 <b>ホルムズ海峡</b>', desc: 'イラン革命防衛隊による封鎖の影響が継続。石油輸送に深刻な影響。' },
 
-    // è»äºæ¼ç¿ã»å±éï¼éï¼
-    { lat: 22.3, lng: 114.2, color: '#3b82f6', label: 'â <b>ä¸­å½æµ·è»ã»æ±ã·ãæµ·</b>', desc: 'ç©ºæ¯ææç¾¤ãæ±ã·ãæµ·ã»è¥¿å¤ªå¹³æ´ã§ã®æ¼ç¿ãå¼·åã076åä¸é¸è¦ãåå ã' },
-    { lat: 55.0, lng: 37.6, color: '#3b82f6', label: 'ð·ðº <b>ã­ã·ã¢ã»æ¬§å·æ¹é¢</b>', desc: 'NATOã¨ã®å¯¾å³ããã¬ã¹ãã¼ãã¬ã¼ã¶ã¼åµå¨ãæ¦ç¥ããµã¤ã«è»ã«æ­£å¼éåã' },
-    { lat: 38.3, lng: 127.5, color: '#3b82f6', label: 'ð°ðµ <b>åæé®®</b>', desc: 'å¼¾éããµã¤ã«çºå°å®é¨ãæ­ç¶çã«ç¶ç¶ãå¯¾ã­ã·ã¢è»äºååãé²å±ã' },
+    // 軍事演習・展開（青）
+    { lat: 22.3, lng: 114.2, color: '#3b82f6', label: '⚓ <b>中国海軍・東シナ海</b>', desc: '空母打撃群が東シナ海・西太平洋での演習を強化。076型上陸艦も参加。' },
+    { lat: 55.0, lng: 37.6, color: '#3b82f6', label: '🇷🇺 <b>ロシア・欧州方面</b>', desc: 'NATOとの対峙。ペレスベートレーザー兵器を戦略ミサイル軍に正式配備。' },
+    { lat: 38.3, lng: 127.5, color: '#3b82f6', label: '🇰🇵 <b>北朝鮮</b>', desc: '弾道ミサイル発射実験を断続的に継続。対ロシア軍事協力も進展。' },
 
-    // æ ¸ã»ããµã¤ã«ï¼ç´«ï¼
-    { lat: 56.0, lng: 46.0, color: '#8b5cf6', label: 'â¢ï¸ <b>ã­ã·ã¢æ ¸æ¦å</b>', desc: 'ãªã¬ã·ã¥ãã¯ï¼å¤å¼¾é ­è¶é³éããµã¤ã«ï¼ãå®æ¦ä½¿ç¨ããµã«ããå¤§é¸éå¼¾éå¼¾ã®éåç¶ç¶ã' },
-    { lat: 35.0, lng: 58.0, color: '#8b5cf6', label: 'âï¸ <b>ã¤ã©ã³æ ¸æ½è¨­è·¡</b>', desc: 'ç±³ã»ã¤ã¹ã©ã¨ã«æ»æã§ä¸»è¦æ ¸æ½è¨­ãææãåããæ¨¡æ§ãIAEAãæ»å¯åéãè¦è«ã' },
-    { lat: 40.0, lng: 127.0, color: '#8b5cf6', label: 'ð£ <b>åæé®®æ ¸éçº</b>', desc: 'æ ¸å¼¾é ­ã®å°ååã»ICBMæ­è¼æè¡ã®å®æãè¿ãã¨ã®åæã' },
+    // 核・ミサイル（紫）
+    { lat: 56.0, lng: 46.0, color: '#8b5cf6', label: '☢️ <b>ロシア核戦力</b>', desc: 'オレシュニク（多弾頭超音速ミサイル）を実戦使用。サルマト大陸間弾道弾の配備継続。' },
+    { lat: 35.0, lng: 58.0, color: '#8b5cf6', label: '⚛️ <b>イラン核施設跡</b>', desc: '米・イスラエル攻撃で主要核施設が打撃を受けた模様。IAEAが査察再開を要請。' },
+    { lat: 40.0, lng: 127.0, color: '#8b5cf6', label: '💣 <b>北朝鮮核開発</b>', desc: '核弾頭の小型化・ICBM搭載技術の完成が近いとの分析。' },
   ];
 
   markers.forEach(m => {
