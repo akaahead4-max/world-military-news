@@ -304,6 +304,47 @@
     .medium { background: rgba(245,158,11,.2); color: #fbbf24; }
     .low    { background: rgba(34,197,94,.2);  color: #4ade80; }
 
+    /* ── Amazon書籍カード ── */
+    .book-card {
+      display: block;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color .15s, background .15s;
+    }
+    .book-card:hover {
+      border-color: var(--accent2);
+      background: #1e2535;
+    }
+    .book-tag {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--accent2);
+      letter-spacing: .06em;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+    .book-title {
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 5px;
+    }
+    .book-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+    .book-btn {
+      font-size: 11px;
+      color: #f59e0b;
+      font-weight: 600;
+    }
+
     /* ── モーダル ── */
     .modal-overlay {
       display: none;
@@ -396,7 +437,7 @@
 <div class="container">
   <div class="page-header">
     <h1>🗺️ グローバル安全保障モニター</h1>
-    <div class="updated">最終更新: 2026年6月27日 ／ 各国の軍事活動・紛争情報を一括提供</div>
+    <div class="updated">最終更新: 2026年6月28日 ／ 各国の軍事活動・紛争情報を一括提供</div>
   </div>
 
   <div class="layout">
@@ -414,11 +455,28 @@
         </div>
       </div>
 
-      <!-- 広告枠（ページ上部） -->
-      <div class="ad-unit">
-        <!-- AdSense審査通過後にここに広告コードを貼り付けてください -->
-        広告スペース（728×90）
-      </div>
+      <!-- Amazon アソシエイト：横断バナー -->
+      <a href="https://www.amazon.co.jp/s?k=軍事+安全保障+防衛&tag=YOURTAG-22" target="_blank" rel="noopener sponsored" style="
+        display:block;
+        background:linear-gradient(135deg,#1c2030,#0f1520);
+        border:1px solid var(--border);
+        border-radius:8px;
+        padding:14px 20px;
+        margin:16px 0;
+        text-decoration:none;
+        color:var(--text);
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+      ">
+        <div>
+          <div style="font-size:11px;color:var(--accent2);font-weight:700;letter-spacing:.06em;margin-bottom:4px;">📦 AMAZON</div>
+          <div style="font-size:14px;font-weight:600;">軍事・安全保障の専門書をAmazonで探す</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:3px;">地政学・核戦略・防衛白書など多数取り扱い</div>
+        </div>
+        <div style="font-size:13px;color:#f59e0b;font-weight:700;white-space:nowrap;">見る →</div>
+      </a>
 
       <!-- ウクライナ -->
       <div class="articles-section" id="ukraine">
@@ -448,13 +506,13 @@
             <h3>国連総会、ロシア侵攻4年目に「永続的平和」決議採択——米国は棄権</h3>
             <p>国連緊急特別会合で「ウクライナにおける永続的な平和への支援」決議を採択。第2次トランプ政権下で米国は棄権。欧州各国はNATO離れを見越した独自防衛協力を加速させている。</p>
           </div>
-          <div class="card" data-body="トランプ第2次政権のNATO軽視姿勢を受け、欧州は「米国なしで自らを守る」体制の構築を急ピッチで進めている。2026年6月現在、NATO加盟欧州国のうち20か国以上がGDP比2%の防衛費目標を達成しており、ポーランド（4%超）・バルト三国・フィンランドなどは3〜4%台への引き上げを宣言している。&#10;&#10;防衛産業面ではEUが「欧州防衛産業強化プログラム（EDIP）」を始動し、弾薬・ミサイル・防空システムの域内生産能力を大幅に引き上げる方針を決定。ドイツのラインメタル社、フランスのタレス社、イタリアのレオナルド社が急速に生産ラインを拡大している。&#10;&#10;英仏両国は核抑止力の欧州向け拡大を非公式に協議中とも報じられており、「欧州核シールド」構想が現実の政策議論に入りつつある。一方でハンガリーはロシアとの外交チャンネルを維持しており、EU内の足並みに乱れも生じている。">
+          <div class="card" data-body="ゼレンスキー大統領は2026年6月22日、「ロシアの兵力損耗は毎月3万〜3万5,000人に達している」と表明した。ロシア軍は深刻な人的損耗にもかかわらず、プーチン政権は強制動員を継続し「消耗戦」の長期化を受け入れる姿勢を崩していない。&#10;&#10;ウクライナ軍は6月3日未明、長距離ドローンをロシア西部サンクトペテルブルクの主要石油ターミナルとタンボフ州の軍需工場に向けて発射し、命中させた。6月7日にはロシア軍がザポリッジャ州バラビネ町を誘導爆弾で攻撃し、民間人2名が死亡、5名が負傷した。同日、ロシア軍無人機が使用済み核燃料集中貯蔵施設の建物に着弾し、一部が損壊する事態も発生した。&#10;&#10;日本の国光文乃外務副大臣は6月23日、ウクライナの首都キーウを訪問し、シビハ外相と会談。日本の継続的な対ウクライナ支援を確認した。ゼレンスキー大統領はポーランド・グダニスクでの「ウクライナ復興会議」への参加を見送っており、外交的緊張も見られる。">
             <div class="card-top">
-              <span class="tag tag-russia">RUSSIA</span>
-              <span class="card-date">2026.06.27</span>
+              <span class="tag tag-ukraine">UKRAINE</span>
+              <span class="card-date">2026.06.23</span>
             </div>
-            <h3>欧州、「米国抜き防衛協力」を加速——域内軍事支出の急増が続く</h3>
-            <p>トランプ政権のNATO離れを受け、EU・英国主導の独自防衛体制の構築が加速。ドイツ・ポーランドを中心とした東欧防衛ラインの強化が進んでおり、防衛費のGDP比3〜4%への引き上げが議論されている。</p>
+            <h3>ロシア月間損耗3.5万人——ウクライナは長距離ドローンでロシア石油施設を攻撃</h3>
+            <p>ゼレンスキー大統領がロシアの月間損耗3〜3.5万人を表明。ウクライナは長距離ドローンでサンクトペテルブルク石油ターミナルを攻撃し、ロシア軍はザポリッジャ州への誘導爆弾攻撃を継続。日本の外務副大臣が6月23日にキーウを訪問した。</p>
           </div>
         </div>
       </div>
@@ -463,13 +521,13 @@
       <div class="articles-section" id="iran">
         <div class="section-label">🕌 中東情勢</div>
         <div class="articles-grid">
-          <div class="card" data-body="2026年6月17日、ドーハにおいてトランプ米大統領とイランのペゼシュキアン大統領が直接会談を行い、「戦闘終結に関する覚書（MOU）」に署名した。2026年2月の米・イスラエル共同攻撃開始から約4か月での外交的決着となる。&#10;&#10;覚書の主な内容は、①双方の敵対行為の即時停止、②イラン核施設へのIAEA査察再開、③段階的な制裁緩和の協議開始、④ホルムズ海峡の商業航行正常化交渉の開始——の4点とされている。&#10;&#10;ただし、イラン革命防衛隊（IRGC）によるホルムズ海峡の事実上の封鎖は即時解除されておらず、タンカーの通行が依然として制限されている。イスラエルは覚書の内容に不満を示しており、米イスラエル間の関係悪化を懸念する声も上がっている。中東の真の安定には、ホルムズ海峡の完全解放とイランの核開発の透明化という2つの課題解決が不可欠とされる。">
+          <div class="card" data-body="2026年6月17日のドーハ覚書署名を経て、6月19日にパキスタンの仲介のもとイスラマバードで「了解覚書（MOU）」が交わされ、レバノンを含む全前線での軍事行動の即時・恒久停止が宣言された。これにより米・イスラエル主導のイラン攻撃は事実上終結し、外交筋はイランの「辛勝」と位置付けている。&#10;&#10;2026年6月21日には仲介国のパキスタンとカタールが同席する形で、スイス中部ビュルゲンシュトックにて最終合意に向けた協議が実施された。主な議題は①イラン核施設へのIAEA査察の具体的工程、②段階的な制裁緩和スケジュール、③ホルムズ海峡の完全正常化——の3点とされる。&#10;&#10;ホルムズ海峡ではイラン革命防衛隊（IRGC）が依然としてプレゼンスを維持しており、通行料の支払いやIRGCの手続きに従う船舶を優先し、それ以外を制限する「保護網」の構築を続けている。米国もIRANと関係のある船舶への対抗措置を維持しており、完全な正常化には数週間〜数か月を要するとの見通しだ。">
             <div class="card-top">
               <span class="tag tag-iran">IRAN</span>
-              <span class="card-date">2026.06.17</span>
+              <span class="card-date">2026.06.21</span>
             </div>
-            <h3>米イラン、戦闘終結覚書に署名——トランプ・ペゼシュキアン両大統領が合意</h3>
-            <p>トランプ米大統領とイランのペゼシュキアン大統領が戦闘終結を定めた覚書に署名。2026年2月の米・イスラエル共同攻撃開始から約4か月で外交的決着へ向かう。ただしホルムズ海峡の事実上の封鎖状態は継続中。</p>
+            <h3>米イラン停戦が最終合意へ——スイスで協議、ホルムズ正常化は交渉継続中</h3>
+            <p>6月19日のイスラマバード覚書で全前線の軍事行動即時停止を宣言。6月21日にスイスでの最終協議でIAEA査察再開・制裁緩和・ホルムズ正常化を協議。ただしIRGCは海峡で引き続きプレゼンスを維持している。</p>
           </div>
           <div class="card" data-body="2026年2月28日未明（現地時間）、米軍とイスラエル軍はイランの核関連施設および革命防衛隊（IRGC）の主要拠点に対する大規模な航空・ミサイル攻撃を開始した。作戦は「オペレーション・ライジングサン」と報じられている。&#10;&#10;攻撃ではフォルドウ濃縮施設・ナタンズ核施設・イスファハン核研究センターが標的となり、複数のバンカーバスター爆弾と海上発射巡航ミサイルが使用された。この攻撃で最高指導者アリー・ハメネイー師が死亡したことをイラン国営メディアが確認。イスラム革命防衛隊評議会は次男のモジタバー・ハメネイー師を後継最高指導者に選出した。&#10;&#10;イランは直ちに報復攻撃を実施。弾道ミサイルと無人機をイスラエルおよびペルシャ湾岸の米軍基地に向けて発射し、ホルムズ海峡を封鎖。日本を含む世界の石油市場に甚大な打撃を与えた。国連安保理では緊急会合が召集されたが、米国の拒否権行使により決議は採択されなかった。">
             <div class="card-top">
@@ -502,13 +560,13 @@
       <div class="articles-section" id="pla">
         <div class="section-label">🤖 中ロ軍事技術</div>
         <div class="articles-grid">
-          <div class="card" data-body="2025年11月5日、中国人民解放軍海軍は電磁弾射システム（EMALS）を搭載した空母「福建舰（Fujian）」の正式就役を宣言した。中国にとって3隻目の空母であり、独自開発した電磁カタパルト技術の実用化を初めて実現した艦艇だ。&#10;&#10;福建舰は満載排水量約8万トン。電磁カタパルト（電磁弾射）を4基装備し、ステルス艦載戦闘機「殲-35（J-35）」、改良型「殲-15T/DT」、早期警戒機「空警-600（KJ-600）」など複数機種の運用に対応。電磁カタパルトの採用により、スキージャンプ式（遼寧・山東）と比較して出撃率・搭載兵装量が大幅に向上している。&#10;&#10;就役により中国は「遼寧」「山東」「福建」の三空母体制を確立。空母打撃群として西太平洋・南シナ海・インド洋への展開が可能となり、台湾有事や南シナ海紛争における戦力投射能力が飛躍的に高まった。米海軍の分析では「福建の戦闘力は遼寧・山東の2倍以上」と評価されており、米空母打撃群との正面対決も理論上は可能な段階に達したとされる。">
+          <div class="card" data-body="2026年6月5日、中国人民解放軍（PLA）はオランダ海軍のフリゲート艦が台湾海峡を通過した際、空軍・海軍両面から追尾・監視する行動を取った。PLA東部戦区は声明で「外国軍艦の動向を効果的に処置した」と表明し、台湾海峡を「中国の内水」と見なす立場を改めて強調した。&#10;&#10;南シナ海においても、PLAは黄岩島（スカボロー礁）周辺で大規模な海空哨戒を展開し、フィリピンの漁船・公船の活動を牽制している。フィリピンと米国は4月に「バリカタン」合同軍事演習を実施し、実弾射撃訓練も行ったが、中国は「地域の安定を損なう」として強く批判している。&#10;&#10;台湾国防部によると、台湾周辺でのPLA軍艦・軍機の活動は2026年に入り一層頻繁化しており、6月だけで複数回の予告なし演習が確認されている。専門家は「台湾海峡の封鎖シミュレーション」が着実に高度化していると分析する。南シナ海での中国の海上民兵・海警・PLAの三層構造による実効支配強化も続いており、周辺国との摩擦が絶えない状況だ。">
             <div class="card-top">
               <span class="tag tag-pla">PLA</span>
-              <span class="card-date">2025.11.05</span>
+              <span class="card-date">2026.06.05</span>
             </div>
-            <h3>中国海軍、電磁弾射型空母「福建」が正式就役——艦載機多機種の発着艦訓練完了</h3>
-            <p>中国初の電磁カタパルト（EMALS）搭載空母・福建舰が正式就役。殲-35、殲-15T/DT、空警-600など複数機種の弾射起飛・着艦訓練を完了し、米空母打撃群に対抗し得る三航母体制の確立が現実味を帯びる。</p>
+            <h3>中国軍、台湾海峡でオランダ海軍艦を追尾——南シナ海・黄岩島でも大規模哨戒</h3>
+            <p>6月5日、PLAが台湾海峡通過中のオランダ艦を空海両面で監視・追尾。南シナ海の黄岩島（スカボロー礁）周辺でも大規模哨戒を展開しフィリピンを牽制。台湾周辺での予告なし演習も6月に複数回確認されている。</p>
           </div>
           <div class="card" data-body="2025年11月14日、中国人民解放軍海軍の076型強襲揚陸艦「四川舰（Sichuan）」が初の海上試験を開始した。075型の後継として建造された世界最大級の強襲揚陸艦であり、満載排水量は4万トンを超えるとされる。&#10;&#10;四川舰の最大の特徴は電磁カタパルトの搭載で、固定翼戦闘機・ドローン（無人機）・ヘリコプターを同一甲板で運用できる。075型がヘリコプター・垂直離着陸機に限定されていたのに対し、076型はJ-35Bに相当するSTOVL戦闘機や攻撃型無人機の運用が可能とされており、「強襲揚陸艦と軽空母の中間」に位置する全く新しいカテゴリの艦艇として注目されている。&#10;&#10;台湾有事を想定した場合、四川舰のような大型揚陸艦は台湾海峡横断作戦の中核を担う存在となる。PLAは現在、075型を3隻・076型を少なくとも2隻建造中とされており、2030年代前半には大規模上陸作戦を実施できる戦力が整うとの分析がある。日本の防衛省もその動向を高い優先度で監視している。">
             <div class="card-top">
@@ -544,29 +602,29 @@
       <div class="sidebar-block">
         <h2>⚡ 速報フィード</h2>
         <div class="flash-item">
-          <div class="flash-tag">IRAN</div>
-          <p>米イラン戦闘終結覚書に署名。ホルムズ封鎖の解除交渉が開始。</p>
-          <div class="flash-time">6月17日</div>
+          <div class="flash-tag">UKRAINE</div>
+          <p>ゼレンスキー大統領、ロシアの月間損耗3〜3.5万人を表明。消耗戦が長期化。</p>
+          <div class="flash-time">6月22日</div>
         </div>
         <div class="flash-item">
           <div class="flash-tag">UKRAINE</div>
-          <p>G7がウクライナ支援の継続を確認、欧州独自防衛協力が加速。</p>
-          <div class="flash-time">6月16日</div>
+          <p>日本の国光外務副大臣がキーウを訪問、シビハ外相と対ウクライナ支援を協議。</p>
+          <div class="flash-time">6月23日</div>
+        </div>
+        <div class="flash-item">
+          <div class="flash-tag">IRAN</div>
+          <p>米イラン、スイス・ビュルゲンシュトックで最終停戦協議。完全合意に向け前進。</p>
+          <div class="flash-time">6月21日</div>
         </div>
         <div class="flash-item">
           <div class="flash-tag">PLA</div>
-          <p>人民解放軍、AI搭載の軍事ロボット開発を公式に認める。</p>
-          <div class="flash-time">3月4日</div>
+          <p>中国軍、台湾海峡を通過するオランダ海軍フリゲートを空海両面で監視・追尾。</p>
+          <div class="flash-time">6月5日</div>
         </div>
         <div class="flash-item">
-          <div class="flash-tag">RUSSIA</div>
-          <p>ロシア、オレシュニク多弾頭ミサイルをウクライナへ発射。</p>
-          <div class="flash-time">5月24日</div>
-        </div>
-        <div class="flash-item">
-          <div class="flash-tag">PLA</div>
-          <p>076型強襲揚陸艦「四川」が海上試験。固定翼機の電磁弾射を確認。</p>
-          <div class="flash-time">11月14日</div>
+          <div class="flash-tag">UKRAINE</div>
+          <p>ウクライナ、長距離ドローンでロシア・サンクトペテルブルク石油ターミナルを攻撃。</p>
+          <div class="flash-time">6月3日</div>
         </div>
       </div>
 
@@ -629,10 +687,40 @@
           <a href="https://www.understandingwar.org" target="_blank" style="color:var(--accent2);text-decoration:none;">📌 ISW（戦争研究所）</a>
         </div>
       </div>
-      <!-- サイドバー広告枠 -->
-      <div class="ad-unit" style="min-height:250px;">
-        <!-- AdSense審査通過後にここに広告コードを貼り付けてください -->
-        広告スペース（300×250）
+      <!-- Amazon アソシエイト：おすすめ書籍 -->
+      <div class="sidebar-block">
+        <h2>📚 おすすめ書籍</h2>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+
+          <a class="book-card" href="https://www.amazon.co.jp/s?k=ウクライナ戦争+小泉悠&tag=YOURTAG-22" target="_blank" rel="noopener sponsored">
+            <div class="book-tag">ウクライナ</div>
+            <div class="book-title">ウクライナ戦争（小泉悠）</div>
+            <div class="book-desc">ロシアの軍事戦略を第一人者が解説。必読の一冊。</div>
+            <div class="book-btn">Amazonで見る →</div>
+          </a>
+
+          <a class="book-card" href="https://www.amazon.co.jp/s?k=地政学+軍事+安全保障&tag=YOURTAG-22" target="_blank" rel="noopener sponsored">
+            <div class="book-tag">地政学</div>
+            <div class="book-title">地政学・安全保障 関連書籍</div>
+            <div class="book-desc">現代の国際情勢を読み解くための地政学・安全保障入門。</div>
+            <div class="book-btn">Amazonで見る →</div>
+          </a>
+
+          <a class="book-card" href="https://www.amazon.co.jp/s?k=中国人民解放軍+軍事&tag=YOURTAG-22" target="_blank" rel="noopener sponsored">
+            <div class="book-tag">中国・PLA</div>
+            <div class="book-title">中国軍事・PLA分析書籍</div>
+            <div class="book-desc">人民解放軍の実態と台湾有事シナリオを分析した専門書。</div>
+            <div class="book-btn">Amazonで見る →</div>
+          </a>
+
+          <a class="book-card" href="https://www.amazon.co.jp/s?k=核抑止+核戦略+軍備管理&tag=YOURTAG-22" target="_blank" rel="noopener sponsored">
+            <div class="book-tag">核・ミサイル</div>
+            <div class="book-title">核戦略・軍備管理 専門書</div>
+            <div class="book-desc">核抑止論から軍備管理条約まで——核時代の安全保障論。</div>
+            <div class="book-btn">Amazonで見る →</div>
+          </a>
+
+        </div>
       </div>
     </aside>
   </div>
@@ -692,13 +780,13 @@
   const markers = [
     // 高強度紛争（赤）
     { lat: 49.0, lng: 32.0, color: '#ef4444', label: '🇺🇦 <b>ウクライナ戦争</b>', desc: 'ロシアによる全面侵攻継続中。停戦交渉は難航。オレシュニクミサイル使用を確認。' },
-    { lat: 35.7, lng: 51.4, color: '#ef4444', label: '🇮🇷 <b>イラン・米国衝突</b>', desc: '2026年2〜4月。米・イスラエル共同攻撃→ハメネイ師死亡→停戦覚書署名。' },
+    { lat: 35.7, lng: 51.4, color: '#f59e0b', label: '🇮🇷 <b>イラン・米国衝突（停戦中）</b>', desc: '6月19日イスラマバード覚書で全面停戦宣言。6月21日スイスで最終協議。核査察・ホルムズ正常化は交渉継続中。' },
     { lat: 29.5, lng: 34.8, color: '#ef4444', label: '🇮🇱 <b>中東・ガザ周辺</b>', desc: 'イスラエルによる軍事作戦継続。米の仲介で断続的な停戦交渉。' },
 
     // 中強度緊張（オレンジ）
-    { lat: 24.0, lng: 121.5, color: '#f59e0b', label: '🇹🇼 <b>台湾海峡</b>', desc: 'PLA演習が頻発。福建空母運用開始で台湾封鎖シミュレーションが現実味を増す。' },
-    { lat: 12.0, lng: 114.0, color: '#f59e0b', label: '🌏 <b>南シナ海</b>', desc: 'フィリピン・中国間の軍事的摩擦継続。PLAが南沙諸島での施設拡張を加速。' },
-    { lat: 26.5, lng: 57.0, color: '#f59e0b', label: '🚢 <b>ホルムズ海峡</b>', desc: 'イラン革命防衛隊による封鎖の影響が継続。石油輸送に深刻な影響。' },
+    { lat: 24.0, lng: 121.5, color: '#f59e0b', label: '🇹🇼 <b>台湾海峡</b>', desc: '6月5日、PLAがオランダ海軍艦を追尾・監視。予告なし演習が6月に複数回確認。封鎖シミュレーションが高度化。' },
+    { lat: 12.0, lng: 114.0, color: '#f59e0b', label: '🌏 <b>南シナ海</b>', desc: '黄岩島（スカボロー礁）周辺でPLAが大規模哨戒を展開。米比「バリカタン」演習に対抗し牽制を強化。' },
+    { lat: 26.5, lng: 57.0, color: '#f59e0b', label: '🚢 <b>ホルムズ海峡</b>', desc: '6月21日のスイス協議でイランが正常化交渉に合意。ただしIRGCは引き続きプレゼンスを維持。' },
 
     // 軍事演習・展開（青）
     { lat: 22.3, lng: 114.2, color: '#3b82f6', label: '⚓ <b>中国海軍・東シナ海</b>', desc: '空母打撃群が東シナ海・西太平洋での演習を強化。076型上陸艦も参加。' },
